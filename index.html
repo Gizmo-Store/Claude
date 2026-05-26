@@ -30,6 +30,27 @@
     }
 
     /* ================= Shop Page ================= */
+    /* ================= Scrolling Text (Marquee) ================= */
+    .marquee-container {
+      flex: 1; /* ကျန်နေတဲ့ နေရာလွတ်အားလုံးကို ယူရန် */
+      overflow: hidden;
+      white-space: nowrap;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .marquee-text {
+      display: inline-block;
+      padding-left: 100%; /* ညာဘက်အစွန်ကနေ စပေါ်စေရန် */
+      animation: marquee 10s linear infinite; /* 10s က အမြန်နှုန်းပါ။ လိုသလို ပြင်နိုင်ပါသည်။ */
+      font-size: 18px;
+      font-weight: normal;
+      color: #ff4d4d; /* အနီရောင် (သတိပြုမိစေရန်) */
+    }
+    @keyframes marquee {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(-100%, 0); } /* ဘယ်ဘက်သို့ အဆုံးထိ သွားရန် */
+    }
     #shop-page {
       display: block;
       min-height: 100vh;
@@ -216,7 +237,10 @@
       <div class="header-container">
         <div class="header-top">
           <img src="https://i.ibb.co/b5RvKdSQ/IMG-0619.jpg" class="shop-logo" alt="Gizmo Logo">
-          <span class="shop-title">Gizmo Store</span>
+          <span class="shop-title" style="white-space: nowrap;">Gizmo Store</span>
+          <div class="marquee-container">
+            <span class="marquee-text">စျေးနှုန်းအပြောင်းအလဲရှိနိုင်ပါသည်</span>
+          </div>
         </div>
         <input type="text" id="searchBar" onkeyup="searchProducts()" placeholder="🔍 Search products or brands...">
       </div>
@@ -234,111 +258,68 @@
       <!-- ===== Accessories & Gadgets ===== -->
       <div class="product-card visible"
            data-brand="accessories"
-           data-title="Metro Sling V2"
-           data-price="185,000 MMK"
-           data-desc="Alpaka V2 sling bag, compact, water-resistant.">
-        <img src="https://i.ibb.co/rR0C5KzL/IMG-1541.jpg" class="product-img" alt="Metro Sling V2" onclick="showImage(this.src)">
-        <h4>Metro Sling V2</h4>
-        <p>185,000 MMK</p>
+           data-title="Alpaka Bravo Sling Mini"
+           data-price="319,500 MMK"
+           data-desc="Alpaka Bravo Sling Mini, Limited edition Black X-Pac™ VX-21
+➜ Orange 210D Ripstop Nylon lining
+➜ Magnetic Fidlock buckle in the middle of the strap for efficiency
+➜ Anti-theft, lockable zippers
+➜ Integrated Key Tether to keep keys in one place
+➜ Comfortable & easy to adjust Soft Nylon Strap
+➜ Fits an iPad Mini and Nintendo Switch
+➜ Weatherproof fabrics
+➜ Waterproof zippers
+➜ Molle style webbing for endless configuration
+✅ External Fabric:
+Forest Green: X-PAC™ VX-21
+✅ Internal fabric:
+210D Orange Ripstop Nylon">
+        <img src="https://i.ibb.co/QFQLVPMx/bravo-sling-mini.jpg" class="product-img" alt="Alpaka Bravo Sling Mini" onclick="showImage(this.src)">
+        <h4>Bravo Sling Mini</h4>
+        <p>319,500 MMK</p>
+        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
+        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
+      </div>
+
+
+      <div class="product-card visible"
+           data-brand="accessories"
+           data-title="WHOOP 5.0 Band Sportflex Flurry(Limited Edition)"
+           data-price="458,500 MMK"
+           data-desc="Product Details
+
+-Adjustable
+-Stainless Steel Components
+-Sweatproof
+--Strength Trainer Compatible
+-Waterproof
+-Stainproof
+-Flurry SportFlex features a crisp white base with multicolored speckles for added depth and visual energy. The result is a clean, standout look. Made from soft-touch silicone, it’s built for workouts and everyday wear.">
+        <img src="https://i.ibb.co/7dpk2LvZ/flurry.jpg" class="product-img" alt="WHOOP 5.0 Band - Sportflex Flurry(Limited Edition)" onclick="showImage(this.src)">
+        <h4>WHOOP 5.0 Band Sportflex Flurry(Limited Edition)
+        </h4>
+        <p>458,500 MMK</p>
         <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
         <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
       </div>
 
       <div class="product-card visible"
            data-brand="accessories"
-           data-title="Camera Backpack 25L"
-           data-price="450,000 MMK"
-           data-desc="Professional camera backpack for photographers.">
-        <img src="https://i.ibb.co/XZh9DvBH/IMG-1539.jpg" class="product-img" alt="Camera Backpack 25L" onclick="showImage(this.src)">
-        <h4>Camera Backpack 25L</h4>
-        <p>450,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
+           data-title="WHOOP 5.0 Band Sportflex Ice(Limited Edition)"
+           data-price="458,500 MMK"
+           data-desc="Product Details
 
-      <div class="product-card visible"
-           data-brand="accessories"
-           data-title="Anker Prime Power Bank"
-           data-price="95,000 MMK"
-           data-desc="High speed charging power bank by Anker.">
-        <img src="https://i.ibb.co/vvHWjPMz/IMG-1542.jpg" class="product-img" alt="Anker Prime Power Bank" onclick="showImage(this.src)">
-        <h4>Anker Prime Power Bank</h4>
-        <p>95,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-      <!-- Dyson — TODO: replace placeholder image with real Dyson product image -->
-      <div class="product-card visible"
-           data-brand="accessories"
-           data-title="Dyson"
-           data-price="9,000 MMK"
-           data-desc="Air freshener.">
-        <img src="https://placehold.co/300x300/1e293b/38bdf8?text=Dyson" class="product-img" alt="Dyson" onclick="showImage(this.src)">
-        <h4>Dyson</h4>
-        <p>9,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-      <div class="product-card visible"
-           data-brand="accessories"
-           data-title="EDC37 Flashlight"
-           data-price="500,000 MMK"
-           data-desc="Extremely bright tactical flashlight.">
-        <img src="https://i.ibb.co/4n3qZ4KZ/IMG-1544.jpg" class="product-img" alt="EDC37 Flashlight" onclick="showImage(this.src)">
-        <h4>EDC37 Flashlight</h4>
-        <p>500,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-      <!-- AO — TODO: replace placeholder image with real AO product image -->
-      <div class="product-card visible"
-           data-brand="accessories"
-           data-title="AO"
-           data-price="40,000 MMK"
-           data-desc="Player Bottle.">
-        <img src="https://placehold.co/300x300/1e293b/38bdf8?text=AO" class="product-img" alt="AO" onclick="showImage(this.src)">
-        <h4>AO</h4>
-        <p>40,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-      <!-- Aukey — TODO: replace placeholder image with real Aukey product image -->
-      <div class="product-card visible"
-           data-brand="accessories"
-           data-title="Aukey"
-           data-price="65,000 MMK"
-           data-desc="High speed charging cable.">
-        <img src="https://placehold.co/300x300/1e293b/38bdf8?text=Aukey" class="product-img" alt="Aukey" onclick="showImage(this.src)">
-        <h4>Aukey</h4>
-        <p>65,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-      <div class="product-card visible"
-           data-brand="accessories"
-           data-title="Omron"
-           data-price="920,000 MMK"
-           data-desc="Blood pressure monitor.">
-        <img src="https://i.ibb.co/4n3qZ4KZ/IMG-1544.jpg" class="product-img" alt="Omron" onclick="showImage(this.src)">
-        <h4>Omron</h4>
-        <p>920,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-      <div class="product-card visible"
-           data-brand="accessories"
-           data-title="WHOOP Life"
-           data-price="2,550,000 MMK"
-           data-desc="Health and fitness wearable tracker.">
-        <img src="https://i.ibb.co/qL5K9snf/IMG-1540.jpg" class="product-img" alt="WHOOP Life" onclick="showImage(this.src)">
-        <h4>WHOOP Life</h4>
-        <p>2,550,000 MMK</p>
+-Adjustable
+-Stainless Steel Components
+-Sweatproof
+--Strength Trainer Compatible
+-Waterproof
+-Stainproof
+-Flurry SportFlex features a crisp white base with multicolored speckles for added depth and visual energy. The result is a clean, standout look. Made from soft-touch silicone, it’s built for workouts and everyday wear.">
+        <img src="https://i.ibb.co/TfFxftd/ice.jpg" class="product-img" alt="WHOOP 5.0 Band - Sportflex Ice(Limited Edition)" onclick="showImage(this.src)">
+        <h4>WHOOP 5.0 Band Sportflex Ice(Limited Edition)
+        </h4>
+        <p>458,500 MMK</p>
         <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
         <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
       </div>
@@ -346,55 +327,59 @@
       <!-- ===== Home Appliances ===== -->
       <div class="product-card visible"
            data-brand="home"
-           data-title="Osmo Pocket 3"
-           data-price="657,000 MMK"
-           data-desc="Pocket-sized vlogging camera with gimbal.">
-        <img src="https://i.ibb.co/mVQjg7kz/Untitled-5.jpg" class="product-img" alt="Osmo Pocket 3" onclick="showImage(this.src)">
-        <h4>Osmo Pocket 3</h4>
-        <p>657,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-      <!-- Insta360 — TODO: replace placeholder image with real Insta360 product image -->
-      <div class="product-card visible"
-           data-brand="home"
-           data-title="Insta360"
-           data-price="657,000 MMK"
-           data-desc="Pocket-sized 360° action camera.">
-        <img src="https://placehold.co/300x300/1e293b/38bdf8?text=Insta360" class="product-img" alt="Insta360" onclick="showImage(this.src)">
-        <h4>Insta360</h4>
-        <p>657,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-      <!-- POLAR — TODO: replace placeholder image with real POLAR product image -->
-      <div class="product-card visible"
-           data-brand="home"
-           data-title="POLAR"
-           data-price="657,000 MMK"
-           data-desc="Polar sports & fitness device.">
-        <img src="https://placehold.co/300x300/1e293b/38bdf8?text=POLAR" class="product-img" alt="POLAR" onclick="showImage(this.src)">
-        <h4>POLAR</h4>
-        <p>657,000 MMK</p>
+           data-title="DJI Power 1000 Mini Power Station"
+           data-price="2,291,000 MMK"
+           data-desc="DJI's Ultra-Portable 1kWh Power Station
+100W Retractable Cable, Effortless Charging & Storage
+0-80% Recharge in Just 58 Mins
+Built-in 400W Car Charger & MPPT Module
+High-Efficiency Power, Built to Last
+Engineered for Secure & Reliable Use">
+        <img src="https://i.ibb.co/1f9spdmX/Dji-power-1000-mini.jpg" class="product-img" alt="DJI Power 1000 Mini Power Station" onclick="showImage(this.src)">
+        <h4>DJI Power 1000 Mini Power Station</h4>
+        <p>2,291,000 MMK</p>
         <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
         <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
       </div>
 
       <div class="product-card visible"
-           data-brand="home"
-           data-title="Olight"
-           data-price="550,000 MMK"
-           data-desc="Premium Olight illumination tool.">
-        <img src="https://i.ibb.co/W4DN2J08/image.jpg" class="product-img" alt="Olight" onclick="showImage(this.src)">
-        <h4>Olight</h4>
-        <p>550,000 MMK</p>
+           data-brand="accessories"
+           data-title="WD Purple 2TB"
+           data-price="575,000 MMK"
+           data-desc="About this item
+
+- Engineered for mainstream surveillance systems
+-WD AllFrame technology delivers optimizations for write-intensive, low bit-rate, high stream-count workloads typical to mainstream surveillance applications
+- Supports up to 180 TB/yr workload rate(3) | (3) Workload Rate is defined as the amount of user data transferred to or from the hard drive. Workload Rate is annualized (TB transferred ✕ (8760 / recorded power-on hours)). 
+-Workload Rate will vary depending on your hardware and software components and configurations.
+-Support for up to 16 bays(7) | (7) 1TB through 2TB support up to eight bays; 3TB and above support up to 16 bays.
+-Tarnish-resistant components(6) | (6) Tarnish resistant components for capacities 3TB and higher.">
+        <img src="https://i.ibb.co/9Hnxm14R/wd.jpg" class="product-img" alt="WD Purple 2TB" onclick="showImage(this.src)">
+        <h4>WD Purple 2TB</h4>
+        <p>575,000 MMK</p>
         <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
         <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
       </div>
-    </div>
-  </div>
+
+
+      <div class="product-card visible"
+           data-brand="accessories"
+           data-title="WD Purple 4TB"
+           data-price="837,000 MMK"
+           data-desc=" About this item
+
+    -Engineered for mainstream surveillance systems.
+    -WD AllFrame technology delivers optimizations for write-intensive, low bit-rate, high stream-count workloads typical to mainstream surveillance applications
+    -Supports up to 180 TB/yr workload rate
+    -Capacity up to 8TB
+    -Support for up to 16 bays
+">
+        <img src="https://i.ibb.co/TMmN4KN2/4tb.jpg" class="product-img" alt="WD Purple 4TB" onclick="showImage(this.src)">
+        <h4>WD Purple 4TB</h4>
+        <p>837,000 MMK</p>
+        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
+        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
+      </div>
 
   <!-- ===== Image Modal ===== -->
   <div id="image-modal" class="modal" onclick="closeModal('image-modal')">
@@ -407,7 +392,7 @@
     <div class="modal-content" onclick="event.stopPropagation()">
       <h2 id="d-title" style="margin-top:0;"></h2>
       <p id="d-price" style="color:var(--text-accent); font-weight:bold; font-size:18px;"></p>
-      <p id="d-desc"  style="line-height:1.5; margin-bottom:20px;"></p>
+      <p id="d-desc" style="line-height:1.5; margin-bottom:20px; white-space: pre-line;"></p>
       <button class="shop-now-btn" id="modal-order-btn"
               style="padding:15px; font-size:15px;">Order Now</button>
     </div>
