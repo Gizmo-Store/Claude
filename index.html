@@ -89,7 +89,7 @@
       color: #9ca3af;
     }
 
-    /* ================= Tracking Bar (New) ================= */
+    /* ================= Tracking Bar ================= */
     .tracking-bar-container {
       padding: 15px 15px 0 15px;
       max-width: 1000px;
@@ -125,6 +125,8 @@
       background: var(--bg-main);
       -webkit-overflow-scrolling: touch;
       border-bottom: 1px solid var(--border-color);
+      max-width: 1000px;
+      margin: auto;
     }
     .brand-tabs-container::-webkit-scrollbar { display: none; }
     .brand-tab {
@@ -200,6 +202,7 @@
       object-fit: cover;
       border-radius: 10px;
       cursor: pointer;
+      background: #f3f4f6; /* ပုံမပွင့်ခင် ကာကွယ်ရန် */
     }
     .view-btn {
       background: #fef2f2;
@@ -305,9 +308,9 @@
       margin-bottom: 20px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .fb   { background: #0084FF; }
+    .fb { background: #0084FF; }
     .phone { background: #10b981; }
-    .tele  { background: #229ED9; }
+    .tele { background: #229ED9; }
     .close-btn {
       background: #f3f4f6;
       color: var(--text-main);
@@ -414,6 +417,8 @@
       line-height: 1.3;
       word-wrap: break-word;
     }
+    .h-circle.pending { background: #e5e7eb; }
+    .h-line.pending { background-image: radial-gradient(circle, #e5e7eb 40%, transparent 45%); }
   </style>
 </head>
 <body>
@@ -432,7 +437,6 @@
       </div>
     </div>
 
-    <!-- Tracking Bar Container (Moved above tabs) -->
     <div class="tracking-bar-container">
       <button class="tracking-bar-btn" onclick="openTrackModal()">
         🔍 Track your shipment 📦
@@ -440,127 +444,16 @@
     </div>
 
     <div class="brand-tabs-container">
-      <div class="brand-tab active" onclick="filterBrand('all', this)">All</div>
-      <div class="brand-tab" onclick="filterBrand('accessories', this)">Accessories & Gadgets</div>
-      <div class="brand-tab" onclick="filterBrand('home', this)">Home Appliances</div>
+      <div id="tab-all" class="brand-tab active" onclick="filterBrand('all', this)">All</div>
+      <div id="tab-accessories" class="brand-tab" onclick="filterBrand('accessories', this)">Accessories & Gadgets</div>
+      <div id="tab-home" class="brand-tab" onclick="filterBrand('home', this)">Home Appliances</div>
     </div>
 
     <div class="products-container" id="productGrid">
       <div id="no-results">🔍 ပစ္စည်းရှာမတွေ့ပါဗျာ။ အခြားအမည်ဖြင့် ပြန်ရှာကြည့်ပါ။</div>
-
-      <div class="product-card visible" data-brand="accessories" data-title="Alpaka Bravo Sling Mini" data-price="319,500 MMK" data-desc="Alpaka Bravo Sling Mini, Limited edition Black X-Pac™ VX-21
-➜ Orange 210D Ripstop Nylon lining
-➜ Magnetic Fidlock buckle in the middle of the strap for efficiency
-➜ Anti-theft, lockable zippers
-➜ Integrated Key Tether to keep keys in one place
-➜ Comfortable & easy to adjust Soft Nylon Strap
-➜ Fits an iPad Mini and Nintendo Switch
-➜ Weatherproof fabrics
-➜ Waterproof zippers
-➜ Molle style webbing for endless configuration
-✅ External Fabric:
-Forest Green: X-PAC™ VX-21
-✅ Internal fabric:
-210D Orange Ripstop Nylon">
-        <img src="https://i.ibb.co/QFQLVPMx/bravo-sling-mini.jpg" class="product-img" alt="Alpaka Bravo Sling Mini" onclick="showImage(this.src)">
-        <h4>Bravo Sling Mini</h4>
-        <p>319,500 MMK</p>
-        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-      <div class="product-card visible" data-brand="accessories" data-title="WHOOP 5.0 Band Sportflex Flurry(Limited Edition)" data-price="458,500 MMK" data-desc="Product Details
-
--Adjustable
--Stainless Steel Components
--Sweatproof
---Strength Trainer Compatible
--Waterproof
--Stainproof
--Flurry SportFlex features a crisp white base with multicolored speckles for added depth and visual energy. The result is a clean, standout look. Made from soft-touch silicone, it’s built for workouts and everyday wear.">
-        <img src="https://i.ibb.co/GQw7NhTJ/WHOOP-Band.jpg" class="product-img" alt="WHOOP 5.0 Band - Sportflex Flurry(Limited Edition)" onclick="showImage(this.src)">
-        <h4>WHOOP 5.0 Band Sportflex Flurry(Limited Edition)</h4>
-        <p>458,500 MMK</p>
-        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-      <div class="product-card visible" data-brand="accessories" data-title="WHOOP 5.0 Band Sportflex Ice(Limited Edition)" data-price="458,500 MMK" data-desc="Product Details
-
--Adjustable
--Stainless Steel Components
--Sweatproof
---Strength Trainer Compatible
--Waterproof
--Stainproof
--Flurry SportFlex features a crisp white base with multicolored speckles for added depth and visual energy. The result is a clean, standout look. Made from soft-touch silicone, it’s built for workouts and everyday wear.">
-        <img src="https://i.ibb.co/TfFxftd/ice.jpg" class="product-img" alt="WHOOP 5.0 Band - Sportflex Ice(Limited Edition)" onclick="showImage(this.src)">
-        <h4>WHOOP 5.0 Band Sportflex Ice(Limited Edition)</h4>
-        <p>458,500 MMK</p>
-        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-       <div class="product-card visible" data-brand="accessories" data-title="DJI Osmo Mobile 8 Ai" data-price="675,000 MMK" data-desc="-Native Tracking With Integrated Audio & Lighting Capabilities
--Seamless 360° Pan Rotation
--Direct Phone Connection for Effortless Tracking
--Ultra-Comfortable Grip for Low-Angle Shots
--Built-in Extension Rod & Tripod
--10-Hour Battery Life & Phone Charging
--Robust 3-Axis Gimbal Stabilization
--Easy Tutorials & One-Tap Editing">
-        <img src="https://i.ibb.co/Zp08nvz4/Dji-osmo-mobile-8.jpg" class="product-img" alt="DJI Osmo Mobile 8 Ai" onclick="showImage(this.src)">
-        <h4>DJI Osmo Mobile 8 Ai</h4>
-        <p>675,000 MMK</p>
-        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-      <div class="product-card visible" data-brand="home" data-title="DJI Power 1000 Mini Power Station" data-price="2,291,000 MMK" data-desc="DJI's Ultra-Portable 1kWh Power Station
-100W Retractable Cable, Effortless Charging & Storage
-0-80% Recharge in Just 58 Mins
-Built-in 400W Car Charger & MPPT Module
-High-Efficiency Power, Built to Last
-Engineered for Secure & Reliable Use">
-        <img src="https://i.ibb.co/1f9spdmX/Dji-power-1000-mini.jpg" class="product-img" alt="DJI Power 1000 Mini Power Station" onclick="showImage(this.src)">
-        <h4>DJI Power 1000 Mini Power Station</h4>
-        <p>2,291,000 MMK</p>
-        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-      
-      <div class="product-card visible" data-brand="accessories" data-title="WD Purple 2TB" data-price="575,000 MMK" data-desc="About this item
-
-- Engineered for mainstream surveillance systems
--WD AllFrame technology delivers optimizations for write-intensive, low bit-rate, high stream-count workloads typical to mainstream surveillance applications
-- Supports up to 180 TB/yr workload rate(3) | (3) Workload Rate is defined as the amount of user data transferred to or from the hard drive. Workload Rate is annualized (TB transferred ✕ (8760 / recorded power-on hours)). 
--Workload Rate will vary depending on your hardware and software components and configurations.
--Support for up to 16 bays(7) | (7) 1TB through 2TB support up to eight bays; 3TB and above support up to 16 bays.
--Tarnish-resistant components(6) | (6) Tarnish resistant components for capacities 3TB and higher.">
-        <img src="https://i.ibb.co/9Hnxm14R/wd.jpg" class="product-img" alt="WD Purple 2TB" onclick="showImage(this.src)">
-        <h4>WD Purple 2TB</h4>
-        <p>575,000 MMK</p>
-        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
-
-      <div class="product-card visible" data-brand="accessories" data-title="WD Purple 4TB" data-price="837,000 MMK" data-desc=" About this item
-
--Engineered for mainstream surveillance systems.
--WD AllFrame technology delivers optimizations for write-intensive, low bit-rate, high stream-count workloads typical to mainstream surveillance applications
--Supports up to 180 TB/yr workload rate
--Capacity up to 8TB
--Support for up to 16 bays">
-        <img src="https://i.ibb.co/fsW58G0/For-website.jpg" class="product-img" alt="WD Purple 4TB" onclick="showImage(this.src)">
-        <h4>WD Purple 4TB</h4>
-        <p>837,000 MMK</p>
-        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
-      </div>
     </div>
   </div>
 
-  <!-- Modal Elements -->
   <div id="image-modal" class="modal" onclick="closeModal('image-modal')">
     <img id="modal-img" alt="Product Image Full View" style="max-width:90%; max-height:80%; border-radius:10px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
   </div>
@@ -588,7 +481,6 @@ Engineered for Secure & Reliable Use">
     </div>
   </div>
 
-  <!-- Tracking Entry Modal -->
   <div id="track-modal" class="modal" onclick="closeModal('track-modal')">
     <div class="modal-content" onclick="event.stopPropagation()">
       <h3 style="margin-top:0; color: var(--text-main);">Track Your Shipment</h3>
@@ -600,7 +492,6 @@ Engineered for Secure & Reliable Use">
     </div>
   </div>
 
-  <!-- Tracking Result Dynamic Modal (Image Matched) -->
   <div id="track-result-modal" class="modal" onclick="closeModal('track-result-modal')">
     <div class="modal-content" onclick="event.stopPropagation()">
       <h3 style="margin-top:0; margin-bottom: 10px; color: var(--text-main);">Shipment Status</h3>
@@ -611,7 +502,6 @@ Engineered for Secure & Reliable Use">
       </p>
 
       <div class="horizontal-timeline" id="tracking-timeline">
-        
         <div class="h-step">
           <img class="h-icon" src="https://flagcdn.com/w40/sg.png" alt="SG">
           <div class="h-circle-wrap">
@@ -646,7 +536,6 @@ Engineered for Secure & Reliable Use">
           </div>
           <div class="h-text">Gizmo</div>
         </div>
-
       </div>
 
       <button class="close-btn" onclick="closeModal('track-result-modal')">Close</button>
@@ -656,35 +545,97 @@ Engineered for Secure & Reliable Use">
   <script>
     let selectedProductForOrder = "";
 
+    // ၁။ Google Script ကနေ Data ဆွဲယူမယ့် Function
+    async function loadProducts() {
+      const url = 'https://script.google.com/macros/s/AKfycbxAFuZrsmCLFYp_jgpQZojPSCJd1TbMabnBqdtskqTpDyLPiOOobKRocfyPZqkHGQ62/exec';
+      
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        renderProducts(data);
+      } catch (error) {
+        console.error("Error loading products:", error);
+        document.getElementById('productGrid').innerHTML = '<div style="text-align:center; padding: 20px; width: 100%; grid-column: 1 / -1; color: var(--text-muted);">Data ချိတ်ဆက်ရာတွင် အခက်အခဲရှိနေပါသည်။ ခဏနေမှ ပြန်ကြိုးစားကြည့်ပါ။</div>';
+      }
+    }
+
+    // ၂။ ပစ္စည်းတွေကို HTML ထဲ ထည့်ပေးမယ့် Function
+    function renderProducts(products) {
+      const grid = document.getElementById('productGrid');
+      const noResultsHTML = `<div id="no-results" style="display: none;">🔍 ပစ္စည်းရှာမတွေ့ပါဗျာ။ အခြားအမည်ဖြင့် ပြန်ရှာကြည့်ပါ။</div>`;
+      let cardsHTML = noResultsHTML;
+
+      products.forEach(item => {
+        cardsHTML += `
+          <div class="product-card visible" data-brand="${escapeHtml(item.brand || '')}" data-title="${escapeHtml(item.title || '')}" data-price="${escapeHtml(item.price || '')}" data-desc="${escapeHtml(item.desc || '')}">
+            <img src="${escapeHtml(item.img || '')}" class="product-img" alt="${escapeHtml(item.title || '')}" onclick="showImage(this.src)" onerror="this.src='https://placehold.co/160x160?text=No+Image'">
+            <h4>${escapeHtml(item.title || '')}</h4>
+            <p>${escapeHtml(item.price || '')}</p>
+            <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
+            <button class="shop-now-btn" onclick="orderProduct(this.parentElement.getAttribute('data-title'))">Shop Now</button>
+          </div>
+        `;
+      });
+      
+      grid.innerHTML = cardsHTML;
+      document.getElementById('no-results').style.display = (products.length === 0) ? 'block' : 'none';
+    }
+
+    // လုံခြုံရေးအတွက် escapeHtml Function
+    function escapeHtml(text) {
+      return text ? text.toString()
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;") : "";
+    }
+
+    // Website စဖွင့်တာနဲ့ စတင်ခေါ်ယူခြင်း
+    window.onload = function() {
+      loadProducts();
+    };
+
+    // Filter Function (စာလုံးအကြီးအသေးမှားရင် ကာကွယ်ရန် toLowerCase ထည့်ထားသည်)
     function filterBrand(brand, element) {
       document.getElementById('searchBar').value = "";
       document.getElementById('no-results').style.display = 'none';
       document.querySelectorAll('.brand-tab').forEach(t => t.classList.remove('active'));
-      element.classList.add('active');
+      if (element) { element.classList.add('active'); }
+      
       document.querySelectorAll('.product-card').forEach(card => {
-        const isMatch = brand === 'all' || card.dataset.brand === brand;
+        const cardBrand = card.dataset.brand ? card.dataset.brand.toLowerCase().trim() : "";
+        const targetBrand = brand.toLowerCase().trim();
+        const isMatch = targetBrand === 'all' || cardBrand === targetBrand;
         card.classList.toggle('visible', isMatch);
       });
     }
 
+    // Search Function
     function searchProducts() {
       const query = document.getElementById('searchBar').value.toLowerCase().trim();
       if (query === "") {
-        filterBrand('all', document.querySelector('.brand-tab'));
+        const allTab = document.getElementById('tab-all');
+        filterBrand('all', allTab);
         return;
       }
+      
       document.querySelectorAll('.brand-tab').forEach(t => t.classList.remove('active'));
       let count = 0;
+      
       document.querySelectorAll('.product-card').forEach(card => {
-        const titleMatch = card.dataset.title.toLowerCase().includes(query);
-        const brandMatch = card.dataset.brand.toLowerCase().includes(query);
-        const shouldShow = titleMatch || brandMatch;
+        const title = card.dataset.title ? card.dataset.title.toLowerCase() : "";
+        const brand = card.dataset.brand ? card.dataset.brand.toLowerCase() : "";
+        
+        const shouldShow = title.includes(query) || brand.includes(query);
         card.classList.toggle('visible', shouldShow);
         if (shouldShow) count++;
       });
+      
       document.getElementById('no-results').style.display = (count === 0) ? 'block' : 'none';
     }
 
+    // Modals Control
     function showImage(src) {
       document.getElementById('modal-img').src = src;
       openModalOverlay('image-modal');
@@ -712,14 +663,12 @@ Engineered for Secure & Reliable Use">
 
     function submitTracking() {
       const phoneNo = document.getElementById('tracking-input').value.trim();
-      
       if(phoneNo === "") {
         alert("Phone Number ထည့်ပေးပါဗျာ။");
         return;
       }
 
       let customerName = "";
-
       for(let i=1; i<=4; i++) {
         document.getElementById(`h-circle-${i}`).className = "h-circle pending";
         document.getElementById(`h-circle-${i}`).innerHTML = ""; 
@@ -728,13 +677,11 @@ Engineered for Secure & Reliable Use">
 
       if (phoneNo === "09753500060") {
         customerName = "Ko Nai Ling Oo"; 
-        
         document.getElementById('h-circle-1').className = "h-circle active";
         document.getElementById('h-line-1').className = "h-line transit";
       } 
       else if (phoneNo === "09424745705") {
         customerName = "Ma Theint"; 
-
         document.getElementById('h-circle-1').className = "h-circle completed";
         document.getElementById('h-line-1').className = "h-line completed";
         document.getElementById('h-circle-2').className = "h-circle active";
@@ -742,7 +689,6 @@ Engineered for Secure & Reliable Use">
       } 
       else if (phoneNo === "09794020717") {
         customerName = "Ko Sai Thurein Htun"; 
-
         document.getElementById('h-circle-1').className = "h-circle completed";
         document.getElementById('h-line-1').className = "h-line completed";
         document.getElementById('h-circle-2').className = "h-circle completed";
@@ -751,9 +697,7 @@ Engineered for Secure & Reliable Use">
         document.getElementById('h-line-3').className = "h-line transit";
       } 
       else if (phoneNo === "09772307844") {
-        // Corrected JS Error here (Phone Number format issue)
         customerName = "Ma Thinzar"; 
-
         document.getElementById('h-circle-1').className = "h-circle completed";
         document.getElementById('h-line-1').className = "h-line completed";
         document.getElementById('h-circle-2').className = "h-circle completed";
@@ -772,10 +716,7 @@ Engineered for Secure & Reliable Use">
       document.getElementById('display-customer-name').innerText = customerName;
 
       closeModal('track-modal');
-      
-      setTimeout(() => {
-        openModalOverlay('track-result-modal');
-      }, 300);
+      setTimeout(() => { openModalOverlay('track-result-modal'); }, 300);
     }
 
     function openModalOverlay(id) {
@@ -790,6 +731,7 @@ Engineered for Secure & Reliable Use">
       }
     }
 
+    // Redirect Platforms
     function redirectToPlatform(platform) {
       let url = "";
       let isPhoneCall = false;
@@ -800,15 +742,15 @@ Engineered for Secure & Reliable Use">
         url = "tel:09957399906";
         isPhoneCall = true;
       } else if (platform === 'telegram') {
-        const message = selectedProductForOrder
-          ? "?text=I want to inquire about " + encodeURIComponent(selectedProductForOrder)
-          : "";
-        url = "https://t.me/Alpakamyanmar" + message;
+        url = "https://t.me/Alpakamyanmar";
+        if (selectedProductForOrder) {
+          url += "?text=" + encodeURIComponent("Hi, I want to inquire about: " + selectedProductForOrder);
+        }
       }
 
       if (url) {
         if (isPhoneCall) { window.location.href = url; }
-        else             { window.open(url, '_blank'); }
+        else { window.open(url, '_blank'); }
       }
       closeModal('contact-modal');
     }
