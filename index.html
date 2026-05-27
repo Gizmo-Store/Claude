@@ -5,22 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Gizmo - Premium Store</title>
   <style>
-    /* ================= Global Styles ================= */
+    /* ================= Global Styles (Red & White Theme) ================= */
     :root {
-      --bg-dark: #0f172a;
-      --bg-card: rgba(255, 255, 255, 0.05);
-      --bg-modal: #1e293b;
-      --primary: #ff0000;
-      --text-white: #ffffff;
-      --text-accent: #38bdf8;
-      --text-muted: #64748b;
+      --bg-main: #f8f9fa;       
+      --bg-card: #ffffff;       
+      --bg-modal: #ffffff;      
+      --primary: #A00907;       
+      --text-main: #111827;     
+      --text-white: #ffffff;    
+      --text-accent: #A00907;   
+      --text-muted: #6b7280;    
+      --border-color: #e5e7eb;  
     }
 
     body {
       margin: 0;
       font-family: sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-white);
+      background: var(--bg-main);
+      color: var(--text-main);
       padding-bottom: env(safe-area-inset-bottom);
     }
     body.modal-open {
@@ -30,9 +32,8 @@
     }
 
     /* ================= Shop Page ================= */
-    /* ================= Scrolling Text (Marquee) ================= */
     .marquee-container {
-      flex: 1; /* ကျန်နေတဲ့ နေရာလွတ်အားလုံးကို ယူရန် */
+      flex: 1;
       overflow: hidden;
       white-space: nowrap;
       margin-left: 10px;
@@ -41,33 +42,37 @@
     }
     .marquee-text {
       display: inline-block;
-      padding-left: 100%; /* ညာဘက်အစွန်ကနေ စပေါ်စေရန် */
-      animation: marquee 10s linear infinite; /* 10s က အမြန်နှုန်းပါ။ လိုသလို ပြင်နိုင်ပါသည်။ */
-      font-size: 18px;
-      font-weight: normal;
-      color: #ff4d4d; /* အနီရောင် (သတိပြုမိစေရန်) */
+      padding-left: 100%;
+      animation: marquee 10s linear infinite;
+      font-size: 15px;
+      font-weight: bold;
+      color: #FFFFFF;
     }
     @keyframes marquee {
       0%   { transform: translate(0, 0); }
-      100% { transform: translate(-100%, 0); } /* ဘယ်ဘက်သို့ အဆုံးထိ သွားရန် */
+      100% { transform: translate(-100%, 0); }
     }
+    
     #shop-page {
       display: block;
       min-height: 100vh;
     }
+    
     .sticky-header {
       position: sticky;
       top: 0;
-      background: var(--bg-dark);
+      background: var(--primary);
+      color: var(--text-white);
       z-index: 100;
       padding: 15px;
       padding-top: max(15px, env(safe-area-inset-top));
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.4);
     }
     .header-container { max-width: 1000px; margin: auto; width: 100%; }
     .header-top { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-    .shop-logo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+    .shop-logo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
     .shop-title { font-weight: bold; font-size: 18px; }
+    
     #searchBar {
       padding: 12px 15px;
       width: 100%;
@@ -76,6 +81,12 @@
       box-sizing: border-box;
       font-size: 16px;
       outline: none;
+      background: #ffffff;
+      color: var(--text-main);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    #searchBar::placeholder {
+      color: #9ca3af;
     }
 
     /* ================= Brand Tabs ================= */
@@ -84,21 +95,35 @@
       display: flex;
       gap: 10px;
       overflow-x: auto;
-      background: var(--bg-dark);
+      background: var(--bg-main);
       -webkit-overflow-scrolling: touch;
+      border-bottom: 1px solid var(--border-color);
     }
     .brand-tabs-container::-webkit-scrollbar { display: none; }
     .brand-tab {
-      background: rgba(255, 255, 255, 0.08);
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
       padding: 8px 18px;
       border-radius: 20px;
       cursor: pointer;
       font-size: 13px;
       font-weight: bold;
       white-space: nowrap;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
-    .brand-tab.active { background: var(--primary); }
+    .brand-tab.active { 
+      background: var(--primary); 
+      color: var(--text-white);
+      border-color: var(--primary);
+      box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
+    }
+    .brand-tab.track-tab {
+      background: #fef2f2;
+      color: var(--primary);
+      border: 1px solid #fecaca;
+    }
 
     /* ================= Product Grid ================= */
     .products-container {
@@ -114,11 +139,16 @@
       border-radius: 15px;
       padding: 12px;
       text-align: center;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid var(--border-color);
       display: none;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(220, 38, 38, 0.15);
     }
     .product-card.visible {
       display: flex;
@@ -134,6 +164,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: var(--text-main);
     }
     .product-card p {
       margin: 0 0 10px 0;
@@ -149,19 +180,22 @@
       cursor: pointer;
     }
     .view-btn {
-      background: rgba(255,255,255,0.1);
-      color: var(--text-white);
+      background: #fef2f2;
+      color: var(--primary);
       padding: 10px;
       border-radius: 8px;
-      border: none;
+      border: 1px solid #fecaca;
       cursor: pointer;
       width: 100%;
       margin-top: auto;
       font-size: 13px;
+      font-weight: bold;
+      transition: background 0.3s;
     }
+    .view-btn:hover { background: #fee2e2; }
     .shop-now-btn {
-      background: #fff;
-      color: #000;
+      background: var(--primary);
+      color: var(--text-white);
       padding: 10px;
       border-radius: 8px;
       border: none;
@@ -170,7 +204,10 @@
       margin-top: 8px;
       font-weight: bold;
       font-size: 13px;
+      box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3);
+      transition: background 0.3s;
     }
+    .shop-now-btn:hover { background: #8a0705; }
     #no-results {
       display: none;
       text-align: center;
@@ -179,16 +216,17 @@
       color: var(--text-muted);
     }
 
-    /* ================= Modals (Fixed transition bug) ================= */
+    /* ================= Modals ================= */
     .modal {
-      display: flex;                  /* always flex — no display toggle */
-      visibility: hidden;             /* hidden by default */
+      display: flex;
+      visibility: hidden;
       pointer-events: none;
       position: fixed;
       z-index: 1000;
       left: 0; top: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
       justify-content: center;
       align-items: center;
       padding: 20px;
@@ -205,11 +243,30 @@
       background: var(--bg-modal);
       padding: 25px;
       width: 100%;
-      max-width: 400px;
+      max-width: 500px;
       border-radius: 20px;
       text-align: center;
       max-height: 85vh;
       overflow-y: auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      color: var(--text-main);
+    }
+    .track-input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      color: var(--text-main);
+      margin-bottom: 15px;
+      font-size: 16px;
+      outline: none;
+      box-sizing: border-box;
+      transition: border 0.3s;
+    }
+    .track-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
     }
     .contact-option-btn {
       display: flex;
@@ -223,11 +280,118 @@
       font-weight: bold;
       color: #fff;
       cursor: pointer;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .fb   { background: #0084FF; }
     .phone { background: #10b981; }
     .tele  { background: #229ED9; }
+    .close-btn {
+      background: #f3f4f6;
+      color: var(--text-main);
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      width: 100%;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    /* ================= Horizontal Timeline UI ================= */
+    .horizontal-timeline {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 30px 0 10px 0;
+      position: relative;
+    }
+    .h-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      text-align: center;
+      z-index: 2;
+    }
+    .h-icon {
+      width: 24px;
+      height: 24px;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .h-icon.square {
+      border-radius: 4px;
+    }
+    .h-circle-wrap {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 24px;
+      margin-bottom: 12px;
+    }
+    .h-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #e5e7eb;
+      z-index: 2;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .h-line {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 8px;
+      transform: translateY(-50%);
+      z-index: 1;
+      background-image: radial-gradient(circle, #e5e7eb 40%, transparent 45%);
+      background-size: 16px 8px;
+      background-repeat: repeat-x;
+      background-position: left center;
+    }
+
+    .h-circle.completed, .h-circle.active {
+      background: var(--primary); 
+    }
+    .h-circle.active {
+      box-shadow: 0 0 0 4px rgba(160, 9, 7, 0.2); 
+      animation: pulseRed 1.5s infinite;
+    }
+    .h-circle.final {
+      background: #22c55e;
+    }
+    .h-line.completed {
+      background-image: radial-gradient(circle, var(--primary) 40%, transparent 45%);
+    }
+    .h-line.transit {
+      background-image: radial-gradient(circle, var(--primary) 40%, transparent 45%);
+      animation: moveDotsHorizontal 1s linear infinite;
+    }
+    @keyframes moveDotsHorizontal {
+      0% { background-position: 0 center; }
+      100% { background-position: 16px center; }
+    }
+    .h-text {
+      font-size: 11px;
+      color: var(--text-main);
+      font-weight: 600;
+      line-height: 1.3;
+      word-wrap: break-word;
+    }
   </style>
 </head>
 <body>
@@ -239,7 +403,7 @@
           <img src="https://i.ibb.co/b5RvKdSQ/IMG-0619.jpg" class="shop-logo" alt="Gizmo Logo">
           <span class="shop-title" style="white-space: nowrap;">Gizmo Store</span>
           <div class="marquee-container">
-            <span class="marquee-text">စျေးနှုန်းအပြောင်းအလဲရှိနိုင်ပါသည်</span>
+            <span class="marquee-text">ငွေစျေးအတက်အကျကြောင့် စျေးနှုန်းအပြောင်းအလဲရှိနိုင်ပါသည်</span>
           </div>
         </div>
         <input type="text" id="searchBar" onkeyup="searchProducts()" placeholder="🔍 Search products or brands...">
@@ -250,17 +414,13 @@
       <div class="brand-tab active" onclick="filterBrand('all', this)">All</div>
       <div class="brand-tab" onclick="filterBrand('accessories', this)">Accessories & Gadgets</div>
       <div class="brand-tab" onclick="filterBrand('home', this)">Home Appliances</div>
+      <div class="brand-tab track-tab" onclick="openTrackModal()">🔍Track your shipment 📦</div>
     </div>
 
     <div class="products-container" id="productGrid">
       <div id="no-results">🔍 ပစ္စည်းရှာမတွေ့ပါဗျာ။ အခြားအမည်ဖြင့် ပြန်ရှာကြည့်ပါ။</div>
 
-      <!-- ===== Accessories & Gadgets ===== -->
-      <div class="product-card visible"
-           data-brand="accessories"
-           data-title="Alpaka Bravo Sling Mini"
-           data-price="319,500 MMK"
-           data-desc="Alpaka Bravo Sling Mini, Limited edition Black X-Pac™ VX-21
+      <div class="product-card visible" data-brand="accessories" data-title="Alpaka Bravo Sling Mini" data-price="319,500 MMK" data-desc="Alpaka Bravo Sling Mini, Limited edition Black X-Pac™ VX-21
 ➜ Orange 210D Ripstop Nylon lining
 ➜ Magnetic Fidlock buckle in the middle of the strap for efficiency
 ➜ Anti-theft, lockable zippers
@@ -277,16 +437,11 @@ Forest Green: X-PAC™ VX-21
         <img src="https://i.ibb.co/QFQLVPMx/bravo-sling-mini.jpg" class="product-img" alt="Alpaka Bravo Sling Mini" onclick="showImage(this.src)">
         <h4>Bravo Sling Mini</h4>
         <p>319,500 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
+        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
+        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
       </div>
 
-
-      <div class="product-card visible"
-           data-brand="accessories"
-           data-title="WHOOP 5.0 Band Sportflex Flurry(Limited Edition)"
-           data-price="458,500 MMK"
-           data-desc="Product Details
+      <div class="product-card visible" data-brand="accessories" data-title="WHOOP 5.0 Band Sportflex Flurry(Limited Edition)" data-price="458,500 MMK" data-desc="Product Details
 
 -Adjustable
 -Stainless Steel Components
@@ -296,18 +451,13 @@ Forest Green: X-PAC™ VX-21
 -Stainproof
 -Flurry SportFlex features a crisp white base with multicolored speckles for added depth and visual energy. The result is a clean, standout look. Made from soft-touch silicone, it’s built for workouts and everyday wear.">
         <img src="https://i.ibb.co/GQw7NhTJ/WHOOP-Band.jpg" class="product-img" alt="WHOOP 5.0 Band - Sportflex Flurry(Limited Edition)" onclick="showImage(this.src)">
-        <h4>WHOOP 5.0 Band Sportflex Flurry(Limited Edition)
-        </h4>
+        <h4>WHOOP 5.0 Band Sportflex Flurry(Limited Edition)</h4>
         <p>458,500 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
+        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
+        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
       </div>
 
-      <div class="product-card visible"
-           data-brand="accessories"
-           data-title="WHOOP 5.0 Band Sportflex Ice(Limited Edition)"
-           data-price="458,500 MMK"
-           data-desc="Product Details
+      <div class="product-card visible" data-brand="accessories" data-title="WHOOP 5.0 Band Sportflex Ice(Limited Edition)" data-price="458,500 MMK" data-desc="Product Details
 
 -Adjustable
 -Stainless Steel Components
@@ -317,41 +467,28 @@ Forest Green: X-PAC™ VX-21
 -Stainproof
 -Flurry SportFlex features a crisp white base with multicolored speckles for added depth and visual energy. The result is a clean, standout look. Made from soft-touch silicone, it’s built for workouts and everyday wear.">
         <img src="https://i.ibb.co/TfFxftd/ice.jpg" class="product-img" alt="WHOOP 5.0 Band - Sportflex Ice(Limited Edition)" onclick="showImage(this.src)">
-        <h4>WHOOP 5.0 Band Sportflex Ice(Limited Edition)
-        </h4>
+        <h4>WHOOP 5.0 Band Sportflex Ice(Limited Edition)</h4>
         <p>458,500 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
+        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
+        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
       </div>
 
-       <div class="product-card visible"
-           data-brand="accessories"
-           data-title="DJI Osmo Mobile 8 Ai"
-           data-price="675,000 MMK"
-           data-desc="
-    -Native Tracking With Integrated Audio & Lighting Capabilities
-    -Seamless 360° Pan Rotation
-    -Direct Phone Connection for Effortless Tracking
-    -Ultra-Comfortable Grip for Low-Angle Shots
-    -Built-in Extension Rod & Tripod
-    -10-Hour Battery Life & Phone Charging
-    -Robust 3-Axis Gimbal Stabilization
-    -Easy Tutorials & One-Tap Editing
-">
+      <div class="product-card visible" data-brand="accessories" data-title="DJI Osmo Mobile 8 Ai" data-price="675,000 MMK" data-desc="-Native Tracking With Integrated Audio & Lighting Capabilities
+-Seamless 360° Pan Rotation
+-Direct Phone Connection for Effortless Tracking
+-Ultra-Comfortable Grip for Low-Angle Shots
+-Built-in Extension Rod & Tripod
+-10-Hour Battery Life & Phone Charging
+-Robust 3-Axis Gimbal Stabilization
+-Easy Tutorials & One-Tap Editing">
         <img src="https://i.ibb.co/Zp08nvz4/Dji-osmo-mobile-8.jpg" class="product-img" alt="DJI Osmo Mobile 8 Ai" onclick="showImage(this.src)">
         <h4>DJI Osmo Mobile 8 Ai</h4>
         <p>675,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
+        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
+        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
       </div>
 
-      
-      <!-- ===== Home Appliances ===== -->
-      <div class="product-card visible"
-           data-brand="home"
-           data-title="DJI Power 1000 Mini Power Station"
-           data-price="2,291,000 MMK"
-           data-desc="DJI's Ultra-Portable 1kWh Power Station
+      <div class="product-card visible" data-brand="home" data-title="DJI Power 1000 Mini Power Station" data-price="2,291,000 MMK" data-desc="DJI's Ultra-Portable 1kWh Power Station
 100W Retractable Cable, Effortless Charging & Storage
 0-80% Recharge in Just 58 Mins
 Built-in 400W Car Charger & MPPT Module
@@ -360,16 +497,11 @@ Engineered for Secure & Reliable Use">
         <img src="https://i.ibb.co/1f9spdmX/Dji-power-1000-mini.jpg" class="product-img" alt="DJI Power 1000 Mini Power Station" onclick="showImage(this.src)">
         <h4>DJI Power 1000 Mini Power Station</h4>
         <p>2,291,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
+        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
+        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
       </div>
-    
-
-      <div class="product-card visible"
-           data-brand="accessories"
-           data-title="WD Purple 2TB"
-           data-price="575,000 MMK"
-           data-desc="About this item
+      
+      <div class="product-card visible" data-brand="accessories" data-title="WD Purple 2TB" data-price="575,000 MMK" data-desc="About this item
 
 - Engineered for mainstream surveillance systems
 -WD AllFrame technology delivers optimizations for write-intensive, low bit-rate, high stream-count workloads typical to mainstream surveillance applications
@@ -380,48 +512,39 @@ Engineered for Secure & Reliable Use">
         <img src="https://i.ibb.co/9Hnxm14R/wd.jpg" class="product-img" alt="WD Purple 2TB" onclick="showImage(this.src)">
         <h4>WD Purple 2TB</h4>
         <p>575,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
+        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
+        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
       </div>
 
+      <div class="product-card visible" data-brand="accessories" data-title="WD Purple 4TB" data-price="837,000 MMK" data-desc=" About this item
 
-      <div class="product-card visible"
-           data-brand="accessories"
-           data-title="WD Purple 4TB"
-           data-price="837,000 MMK"
-           data-desc=" About this item
-
-    -Engineered for mainstream surveillance systems.
-    -WD AllFrame technology delivers optimizations for write-intensive, low bit-rate, high stream-count workloads typical to mainstream surveillance applications
-    -Supports up to 180 TB/yr workload rate
-    -Capacity up to 8TB
-    -Support for up to 16 bays
-">
+-Engineered for mainstream surveillance systems.
+-WD AllFrame technology delivers optimizations for write-intensive, low bit-rate, high stream-count workloads typical to mainstream surveillance applications
+-Supports up to 180 TB/yr workload rate
+-Capacity up to 8TB
+-Support for up to 16 bays">
         <img src="https://i.ibb.co/fsW58G0/For-website.jpg" class="product-img" alt="WD Purple 4TB" onclick="showImage(this.src)">
         <h4>WD Purple 4TB</h4>
         <p>837,000 MMK</p>
-        <button class="view-btn"      onclick="openDetails(this.parentElement)">View Details</button>
-        <button class="shop-now-btn"  onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
+        <button class="view-btn" onclick="openDetails(this.parentElement)">View Details</button>
+        <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
       </div>
-
-  <!-- ===== Image Modal ===== -->
-  <div id="image-modal" class="modal" onclick="closeModal('image-modal')">
-    <img id="modal-img" alt="Product Image Full View"
-         style="max-width:90%; max-height:80%; border-radius:10px;">
+    </div>
   </div>
 
-  <!-- ===== Details Modal ===== -->
+  <div id="image-modal" class="modal" onclick="closeModal('image-modal')">
+    <img id="modal-img" alt="Product Image Full View" style="max-width:90%; max-height:80%; border-radius:10px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+  </div>
+
   <div id="details-modal" class="modal" onclick="closeModal('details-modal')">
     <div class="modal-content" onclick="event.stopPropagation()">
       <h2 id="d-title" style="margin-top:0;"></h2>
       <p id="d-price" style="color:var(--text-accent); font-weight:bold; font-size:18px;"></p>
-      <p id="d-desc" style="line-height:1.5; margin-bottom:20px; white-space: pre-line;"></p>
-      <button class="shop-now-btn" id="modal-order-btn"
-              style="padding:15px; font-size:15px;">Order Now</button>
+      <p id="d-desc" style="line-height:1.5; margin-bottom:20px; white-space: pre-line; text-align: left;"></p>
+      <button class="shop-now-btn" id="modal-order-btn" style="padding:15px; font-size:15px;">Order Now</button>
     </div>
   </div>
 
-  <!-- ===== Contact Modal ===== -->
   <div id="contact-modal" class="modal" onclick="closeModal('contact-modal')">
     <div class="modal-content" onclick="event.stopPropagation()">
       <h3 style="margin-top:0;">Order Platforms</h3>
@@ -436,10 +559,72 @@ Engineered for Secure & Reliable Use">
     </div>
   </div>
 
+  <div id="track-modal" class="modal" onclick="closeModal('track-modal')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <h3 style="margin-top:0; color: var(--text-main);">Track Your Shipment</h3>
+      <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">
+        ကျေးဇူးပြု၍ သင့်ရဲ့ Phone Number ကို ရိုက်ထည့်ပေးပါ။
+      </p>
+      <input type="text" id="tracking-input" class="track-input" placeholder="e.g., 09xxxxxxxx" onkeypress="if(event.key === 'Enter') submitTracking()">
+      <button class="shop-now-btn" onclick="submitTracking()" style="padding:14px; font-size:15px;">Track Now</button>
+    </div>
+  </div>
+
+  <div id="track-result-modal" class="modal" onclick="closeModal('track-result-modal')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <h3 style="margin-top:0; margin-bottom: 10px; color: var(--text-main);">Shipment Status</h3>
+      
+      <p style="font-size:15px; color:var(--text-main); font-weight: bold; margin-top: 0; margin-bottom: 20px;">
+        Name: <span id="display-customer-name" style="color: var(--text-accent);"></span> <br>
+        Phone: <span id="display-track-id" style="font-weight: normal;"></span>
+      </p>
+
+      <div class="horizontal-timeline" id="tracking-timeline">
+        
+        <div class="h-step">
+          <img class="h-icon" src="https://flagcdn.com/w40/sg.png" alt="SG">
+          <div class="h-circle-wrap">
+            <div class="h-circle" id="h-circle-1"></div>
+            <div class="h-line" id="h-line-1"></div>
+          </div>
+          <div class="h-text">Singapore</div>
+        </div>
+
+        <div class="h-step">
+          <img class="h-icon" src="https://flagcdn.com/w40/sg.png" alt="SG">
+          <div class="h-circle-wrap">
+            <div class="h-circle" id="h-circle-2"></div>
+            <div class="h-line" id="h-line-2"></div>
+          </div>
+          <div class="h-text">Singapore<br>warehouse</div>
+        </div>
+
+        <div class="h-step">
+          <img class="h-icon" src="https://flagcdn.com/w40/mm.png" alt="MM">
+          <div class="h-circle-wrap">
+            <div class="h-circle" id="h-circle-3"></div>
+            <div class="h-line" id="h-line-3"></div>
+          </div>
+          <div class="h-text">Myanmar</div>
+        </div>
+
+        <div class="h-step">
+          <img class="h-icon square" src="https://i.ibb.co/b5RvKdSQ/IMG-0619.jpg" alt="Gizmo">
+          <div class="h-circle-wrap">
+            <div class="h-circle" id="h-circle-4"></div>
+          </div>
+          <div class="h-text">Gizmo</div>
+        </div>
+
+      </div>
+
+      <button class="close-btn" onclick="closeModal('track-result-modal')">Close</button>
+    </div>
+  </div>
+
   <script>
     let selectedProductForOrder = "";
 
-    /* --- Brand filter --- */
     function filterBrand(brand, element) {
       document.getElementById('searchBar').value = "";
       document.getElementById('no-results').style.display = 'none';
@@ -451,15 +636,12 @@ Engineered for Secure & Reliable Use">
       });
     }
 
-    /* --- Search (title + brand) --- */
     function searchProducts() {
       const query = document.getElementById('searchBar').value.toLowerCase().trim();
-
       if (query === "") {
         filterBrand('all', document.querySelector('.brand-tab'));
         return;
       }
-
       document.querySelectorAll('.brand-tab').forEach(t => t.classList.remove('active'));
       let count = 0;
       document.querySelectorAll('.product-card').forEach(card => {
@@ -472,13 +654,11 @@ Engineered for Secure & Reliable Use">
       document.getElementById('no-results').style.display = (count === 0) ? 'block' : 'none';
     }
 
-    /* --- Image lightbox --- */
     function showImage(src) {
       document.getElementById('modal-img').src = src;
       openModalOverlay('image-modal');
     }
 
-    /* --- Details modal --- */
     function openDetails(card) {
       document.getElementById('d-title').innerText = card.dataset.title;
       document.getElementById('d-price').innerText = card.dataset.price;
@@ -487,14 +667,88 @@ Engineered for Secure & Reliable Use">
       openModalOverlay('details-modal');
     }
 
-    /* --- Order flow --- */
     function orderProduct(title) {
       selectedProductForOrder = title;
       closeModal('details-modal');
       openModalOverlay('contact-modal');
     }
 
-    /* --- Modal helpers (visibility-based, not display-based) --- */
+    /* --- Tracking Dynamic System --- */
+    function openTrackModal() {
+      document.getElementById('tracking-input').value = ""; 
+      openModalOverlay('track-modal');
+    }
+
+    function submitTracking() {
+      const phoneNo = document.getElementById('tracking-input').value.trim();
+      
+      if(phoneNo === "") {
+        alert("Phone Number ထည့်ပေးပါဗျာ။");
+        return;
+      }
+
+      let customerName = "";
+
+      for(let i=1; i<=4; i++) {
+        document.getElementById(`h-circle-${i}`).className = "h-circle pending";
+        document.getElementById(`h-circle-${i}`).innerHTML = ""; 
+        if(i < 4) document.getElementById(`h-line-${i}`).className = "h-line pending";
+      }
+
+      if (phoneNo === "09753500060") {
+        customerName = "Ko Nai Ling Oo"; 
+        
+        document.getElementById('h-circle-1').className = "h-circle active";
+        document.getElementById('h-line-1').className = "h-line transit";
+      } 
+      else if (phoneNo === "09424745705") {
+        customerName = "Ma Theint"; 
+
+        document.getElementById('h-circle-1').className = "h-circle completed";
+        document.getElementById('h-line-1').className = "h-line completed";
+        document.getElementById('h-circle-2').className = "h-circle completed";
+        document.getElementById('h-line-2').className = "h-line completed";
+        document.getElementById('h-circle-3').className = "h-circle active";
+        document.getElementById('h-line-3').className = "h-line transit";
+      } 
+      else if (phoneNo === "09794020717") {
+        customerName = "Ko Sai Thurein Htun"; 
+
+        document.getElementById('h-circle-1').className = "h-circle completed";
+        document.getElementById('h-line-1').className = "h-line completed";
+        document.getElementById('h-circle-2').className = "h-circle completed";
+        document.getElementById('h-line-2').className = "h-line completed";
+        document.getElementById('h-circle-3').className = "h-circle active";
+        document.getElementById('h-line-3').className = "h-line transit";
+      } 
+      else if (phoneNo === "09772307844") {
+        customerName = "Ma Thinzar"; 
+
+        document.getElementById('h-circle-1').className = "h-circle completed";
+        document.getElementById('h-line-1').className = "h-line completed";
+        document.getElementById('h-circle-2').className = "h-circle completed";
+        document.getElementById('h-line-2').className = "h-line completed";
+        document.getElementById('h-circle-3').className = "h-circle completed";
+        document.getElementById('h-line-3').className = "h-line completed";
+        document.getElementById('h-circle-4').className = "h-circle final";
+        document.getElementById('h-circle-4').innerHTML = "✔"; 
+      }
+      else {
+        alert("ဒီ Phone Number ဖြင့် Shipment ရှာမတွေ့ပါဗျာ။ (စမ်းသပ်ရန် 09753500060, 09424745705 သို့ 09772307844 ကို အသုံးပြုပါ)");
+        return;
+      }
+
+      // Customer Name နှင့် Phone Number ကို သတ်မှတ်ခြင်း (အထက်အောက် ပြောင်းထားသည်)
+      document.getElementById('display-track-id').innerText = phoneNo;
+      document.getElementById('display-customer-name').innerText = customerName;
+
+      closeModal('track-modal');
+      
+      setTimeout(() => {
+        openModalOverlay('track-result-modal');
+      }, 300);
+    }
+
     function openModalOverlay(id) {
       document.getElementById(id).classList.add('show');
       document.body.classList.add('modal-open');
@@ -507,7 +761,6 @@ Engineered for Secure & Reliable Use">
       }
     }
 
-    /* --- Platform redirect --- */
     function redirectToPlatform(platform) {
       let url = "";
       let isPhoneCall = false;
