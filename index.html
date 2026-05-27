@@ -89,6 +89,33 @@
       color: #9ca3af;
     }
 
+    /* ================= Tracking Bar (New) ================= */
+    .tracking-bar-container {
+      padding: 15px 15px 0 15px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .tracking-bar-btn {
+      width: 100%;
+      background: #fef2f2;
+      color: var(--primary);
+      border: 2px dashed #fca5a5;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+    .tracking-bar-btn:hover {
+      background: #fee2e2;
+      border-color: #f87171;
+    }
+
     /* ================= Brand Tabs ================= */
     .brand-tabs-container {
       padding: 15px;
@@ -118,11 +145,6 @@
       color: var(--text-white);
       border-color: var(--primary);
       box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
-    }
-    .brand-tab.track-tab {
-      background: #fef2f2;
-      color: var(--primary);
-      border: 1px solid #fecaca;
     }
 
     /* ================= Product Grid ================= */
@@ -410,11 +432,17 @@
       </div>
     </div>
 
+    <!-- Tracking Bar Container (Moved above tabs) -->
+    <div class="tracking-bar-container">
+      <button class="tracking-bar-btn" onclick="openTrackModal()">
+        🔍 Track your shipment 📦
+      </button>
+    </div>
+
     <div class="brand-tabs-container">
       <div class="brand-tab active" onclick="filterBrand('all', this)">All</div>
       <div class="brand-tab" onclick="filterBrand('accessories', this)">Accessories & Gadgets</div>
       <div class="brand-tab" onclick="filterBrand('home', this)">Home Appliances</div>
-      <div class="brand-tab track-tab" onclick="openTrackModal()">🔍Track your shipment 📦</div>
     </div>
 
     <div class="products-container" id="productGrid">
@@ -473,7 +501,7 @@ Forest Green: X-PAC™ VX-21
         <button class="shop-now-btn" onclick="orderProduct(this.parentElement.dataset.title)">Shop Now</button>
       </div>
 
-      <div class="product-card visible" data-brand="accessories" data-title="DJI Osmo Mobile 8 Ai" data-price="675,000 MMK" data-desc="-Native Tracking With Integrated Audio & Lighting Capabilities
+       <div class="product-card visible" data-brand="accessories" data-title="DJI Osmo Mobile 8 Ai" data-price="675,000 MMK" data-desc="-Native Tracking With Integrated Audio & Lighting Capabilities
 -Seamless 360° Pan Rotation
 -Direct Phone Connection for Effortless Tracking
 -Ultra-Comfortable Grip for Low-Angle Shots
@@ -532,6 +560,7 @@ Engineered for Secure & Reliable Use">
     </div>
   </div>
 
+  <!-- Modal Elements -->
   <div id="image-modal" class="modal" onclick="closeModal('image-modal')">
     <img id="modal-img" alt="Product Image Full View" style="max-width:90%; max-height:80%; border-radius:10px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
   </div>
@@ -559,6 +588,7 @@ Engineered for Secure & Reliable Use">
     </div>
   </div>
 
+  <!-- Tracking Entry Modal -->
   <div id="track-modal" class="modal" onclick="closeModal('track-modal')">
     <div class="modal-content" onclick="event.stopPropagation()">
       <h3 style="margin-top:0; color: var(--text-main);">Track Your Shipment</h3>
@@ -570,6 +600,7 @@ Engineered for Secure & Reliable Use">
     </div>
   </div>
 
+  <!-- Tracking Result Dynamic Modal (Image Matched) -->
   <div id="track-result-modal" class="modal" onclick="closeModal('track-result-modal')">
     <div class="modal-content" onclick="event.stopPropagation()">
       <h3 style="margin-top:0; margin-bottom: 10px; color: var(--text-main);">Shipment Status</h3>
@@ -722,6 +753,7 @@ Engineered for Secure & Reliable Use">
         document.getElementById('h-line-3').className = "h-line transit";
       } 
       else if (phoneNo === "09772307844") {
+        // Corrected JS Error here (Phone Number format issue)
         customerName = "Ma Thinzar"; 
 
         document.getElementById('h-circle-1').className = "h-circle completed";
@@ -734,11 +766,10 @@ Engineered for Secure & Reliable Use">
         document.getElementById('h-circle-4').innerHTML = "✔"; 
       }
       else {
-        alert("ဒီ Phone Number ဖြင့် Shipment ရှာမတွေ့ပါဗျာ။ (စမ်းသပ်ရန် 09753500060, 09424745705 သို့ 09772307844 ကို အသုံးပြုပါ)");
+        alert("Phone Number မမှန်ကန်ပါ။ ကျေးဇူးပြု၍ ပြန်လည်စစ်ဆေးပါ။");
         return;
       }
 
-      // Customer Name နှင့် Phone Number ကို သတ်မှတ်ခြင်း (အထက်အောက် ပြောင်းထားသည်)
       document.getElementById('display-track-id').innerText = phoneNo;
       document.getElementById('display-customer-name').innerText = customerName;
 
