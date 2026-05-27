@@ -85,338 +85,92 @@
       color: var(--text-main);
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    #searchBar::placeholder {
-      color: #9ca3af;
-    }
+    #searchBar::placeholder { color: #9ca3af; }
 
     /* ================= Tracking Bar ================= */
-    .tracking-bar-container {
-      padding: 15px 15px 0 15px;
-      max-width: 1000px;
-      margin: auto;
-    }
+    .tracking-bar-container { padding: 15px 15px 0 15px; max-width: 1000px; margin: auto; }
     .tracking-bar-btn {
-      width: 100%;
-      background: #fef2f2;
-      color: var(--primary);
-      border: 2px dashed #fca5a5;
-      padding: 14px;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
+      width: 100%; background: #fef2f2; color: var(--primary); border: 2px dashed #fca5a5;
+      padding: 14px; border-radius: 12px; font-size: 15px; font-weight: bold; cursor: pointer;
+      transition: all 0.3s ease; display: flex; justify-content: center; align-items: center; gap: 8px;
     }
-    .tracking-bar-btn:hover {
-      background: #fee2e2;
-      border-color: #f87171;
-    }
+    .tracking-bar-btn:hover { background: #fee2e2; border-color: #f87171; }
 
     /* ================= Brand Tabs ================= */
     .brand-tabs-container {
-      padding: 15px;
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      background: var(--bg-main);
-      -webkit-overflow-scrolling: touch;
-      border-bottom: 1px solid var(--border-color);
-      max-width: 1000px;
-      margin: auto;
+      padding: 15px; display: flex; gap: 10px; overflow-x: auto; background: var(--bg-main);
+      -webkit-overflow-scrolling: touch; border-bottom: 1px solid var(--border-color); max-width: 1000px; margin: auto;
     }
     .brand-tabs-container::-webkit-scrollbar { display: none; }
     .brand-tab {
-      background: #ffffff;
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 8px 18px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: bold;
-      white-space: nowrap;
-      transition: all 0.3s ease;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      background: #ffffff; color: var(--text-main); border: 1px solid var(--border-color);
+      padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: bold;
+      white-space: nowrap; transition: all 0.3s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
     .brand-tab.active { 
-      background: var(--primary); 
-      color: var(--text-white);
-      border-color: var(--primary);
+      background: var(--primary); color: var(--text-white); border-color: var(--primary);
       box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
     }
 
     /* ================= Product Grid ================= */
-    .products-container {
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 15px;
-      max-width: 1000px;
-      margin: auto;
-    }
+    .products-container { padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; max-width: 1000px; margin: auto; }
     .product-card {
-      background: var(--bg-card);
-      border-radius: 15px;
-      padding: 12px;
-      text-align: center;
-      border: 1px solid var(--border-color);
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: var(--bg-card); border-radius: 15px; padding: 12px; text-align: center; border: 1px solid var(--border-color);
+      display: none; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
-    .product-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(220, 38, 38, 0.15);
-    }
-    .product-card.visible {
-      display: flex;
-      animation: fadeInUp 0.4s ease forwards;
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .product-card h4 {
-      font-size: 15px;
-      margin: 10px 0 5px 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: var(--text-main);
-    }
-    .product-card p {
-      margin: 0 0 10px 0;
-      font-size: 14px;
-      color: var(--text-accent);
-      font-weight: bold;
-    }
-    .product-img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 10px;
-      cursor: pointer;
-      background: #f3f4f6; /* ပုံမပွင့်ခင် ကာကွယ်ရန် */
-    }
-    .view-btn {
-      background: #fef2f2;
-      color: var(--primary);
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #fecaca;
-      cursor: pointer;
-      width: 100%;
-      margin-top: auto;
-      font-size: 13px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
+    .product-card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(220, 38, 38, 0.15); }
+    .product-card.visible { display: flex; animation: fadeInUp 0.4s ease forwards; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .product-card h4 { font-size: 15px; margin: 10px 0 5px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-main); }
+    .product-card p { margin: 0 0 10px 0; font-size: 14px; color: var(--text-accent); font-weight: bold; }
+    .product-img { width: 100%; height: 160px; object-fit: cover; border-radius: 10px; cursor: pointer; background: #f3f4f6; }
+    .view-btn { background: #fef2f2; color: var(--primary); padding: 10px; border-radius: 8px; border: 1px solid #fecaca; cursor: pointer; width: 100%; margin-top: auto; font-size: 13px; font-weight: bold; transition: background 0.3s; }
     .view-btn:hover { background: #fee2e2; }
-    .shop-now-btn {
-      background: var(--primary);
-      color: var(--text-white);
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 8px;
-      font-weight: bold;
-      font-size: 13px;
-      box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3);
-      transition: background 0.3s;
-    }
+    .shop-now-btn { background: var(--primary); color: var(--text-white); padding: 10px; border-radius: 8px; border: none; cursor: pointer; width: 100%; margin-top: 8px; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3); transition: background 0.3s; }
     .shop-now-btn:hover { background: #8a0705; }
-    #no-results {
-      display: none;
-      text-align: center;
-      grid-column: 1 / -1;
-      padding: 40px 20px;
-      color: var(--text-muted);
-    }
+    #no-results { display: none; text-align: center; grid-column: 1 / -1; padding: 40px 20px; color: var(--text-muted); }
 
     /* ================= Modals ================= */
     .modal {
-      display: flex;
-      visibility: hidden;
-      pointer-events: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(4px);
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      box-sizing: border-box;
-      opacity: 0;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+      display: flex; visibility: hidden; pointer-events: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; opacity: 0; transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-    .modal.show {
-      visibility: visible;
-      pointer-events: auto;
-      opacity: 1;
-    }
-    .modal-content {
-      background: var(--bg-modal);
-      padding: 25px;
-      width: 100%;
-      max-width: 500px;
-      border-radius: 20px;
-      text-align: center;
-      max-height: 85vh;
-      overflow-y: auto;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      color: var(--text-main);
-    }
-    .track-input {
-      width: 100%;
-      padding: 12px 15px;
-      border-radius: 10px;
-      border: 1px solid #d1d5db;
-      background: #f9fafb;
-      color: var(--text-main);
-      margin-bottom: 15px;
-      font-size: 16px;
-      outline: none;
-      box-sizing: border-box;
-      transition: border 0.3s;
-    }
-    .track-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
-    }
-    .contact-option-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
-      font-size: 15px;
-      font-weight: bold;
-      color: #fff;
-      cursor: pointer;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
+    .modal.show { visibility: visible; pointer-events: auto; opacity: 1; }
+    .modal-content { background: var(--bg-modal); padding: 25px; width: 100%; max-width: 550px; border-radius: 20px; text-align: center; max-height: 85vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.2); color: var(--text-main); }
+    .track-input { width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid #d1d5db; background: #f9fafb; color: var(--text-main); margin-bottom: 15px; font-size: 16px; outline: none; box-sizing: border-box; transition: border 0.3s; }
+    .track-input:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2); }
+    .contact-option-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px; border-radius: 12px; border: none; font-size: 15px; font-weight: bold; color: #fff; cursor: pointer; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     .fb { background: #0084FF; }
     .phone { background: #10b981; }
     .tele { background: #229ED9; }
-    .close-btn {
-      background: #f3f4f6;
-      color: var(--text-main);
-      border: none;
-      padding: 10px;
-      border-radius: 8px;
-      width: 100%;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 20px;
+    .close-btn { background: #f3f4f6; color: var(--text-main); border: none; padding: 10px; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 20px; }
+
+    /* ================= Multi Item Parcel Cards UI ================= */
+    .parcel-card {
+      background: #f9fafb; border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; text-align: left; box-shadow: 0 1px 3px rgba(0,0,0,0.02);
     }
+    .parcel-header { display: flex; justify-content: space-between; border-bottom: 1px dashed #d1d5db; padding-bottom: 8px; margin-bottom: 12px; font-size: 13px; color: var(--text-muted); }
+    .parcel-title { font-weight: bold; color: var(--primary); font-size: 15px; }
 
     /* ================= Horizontal Timeline UI ================= */
-    .horizontal-timeline {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      padding: 30px 0 10px 0;
-      position: relative;
-    }
-    .h-step {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      text-align: center;
-      z-index: 2;
-    }
-    .h-icon {
-      width: 24px;
-      height: 24px;
-      object-fit: cover;
-      margin-bottom: 12px;
-      border-radius: 50%;
-      background: #fff;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    .h-icon.square {
-      border-radius: 4px;
-    }
-    .h-circle-wrap {
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 24px;
-      margin-bottom: 12px;
-    }
-    .h-circle {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: #e5e7eb;
-      z-index: 2;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 14px;
-      font-weight: bold;
-    }
-    .h-line {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 8px;
-      transform: translateY(-50%);
-      z-index: 1;
-      background-image: radial-gradient(circle, #e5e7eb 40%, transparent 45%);
-      background-size: 16px 8px;
-      background-repeat: repeat-x;
-      background-position: left center;
-    }
-
-    .h-circle.completed, .h-circle.active {
-      background: var(--primary); 
-    }
-    .h-circle.active {
-      box-shadow: 0 0 0 4px rgba(160, 9, 7, 0.2); 
-      animation: pulseRed 1.5s infinite;
-    }
-    .h-circle.final {
-      background: #22c55e;
-    }
-    .h-line.completed {
-      background-image: radial-gradient(circle, var(--primary) 40%, transparent 45%);
-    }
-    .h-line.transit {
-      background-image: radial-gradient(circle, var(--primary) 40%, transparent 45%);
-      animation: moveDotsHorizontal 1s linear infinite;
-    }
-    @keyframes moveDotsHorizontal {
-      0% { background-position: 0 center; }
-      100% { background-position: 16px center; }
-    }
-    .h-text {
-      font-size: 11px;
-      color: var(--text-main);
-      font-weight: 600;
-      line-height: 1.3;
-      word-wrap: break-word;
-    }
+    .horizontal-timeline { display: flex; justify-content: space-between; width: 100%; padding: 20px 0 5px 0; position: relative; }
+    .h-step { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; text-align: center; z-index: 2; }
+    .h-icon { width: 22px; height: 22px; object-fit: cover; margin-bottom: 10px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .h-icon.square { border-radius: 4px; }
+    .h-circle-wrap { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; height: 22px; margin-bottom: 10px; }
+    .h-circle { width: 22px; height: 22px; border-radius: 50%; background: #e5e7eb; z-index: 2; transition: all 0.3s; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold; }
+    .h-line { position: absolute; top: 50%; left: 50%; width: 100%; height: 6px; transform: translateY(-50%); z-index: 1; background-image: radial-gradient(circle, #e5e7eb 40%, transparent 45%); background-size: 14px 6px; background-repeat: repeat-x; background-position: left center; }
+    
+    .h-circle.completed, .h-circle.active { background: var(--primary); }
+    .h-circle.active { box-shadow: 0 0 0 4px rgba(160, 9, 7, 0.2); animation: pulseRed 1.5s infinite; }
+    .h-circle.final { background: #22c55e; }
+    .h-line.completed { background-image: radial-gradient(circle, var(--primary) 40%, transparent 45%); }
+    .h-line.transit { background-image: radial-gradient(circle, var(--primary) 40%, transparent 45%); animation: moveDotsHorizontal 1s linear infinite; }
+    
+    @keyframes pulseRed { 0% { box-shadow: 0 0 0 0 rgba(160, 9, 7, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(160, 9, 7, 0); } 100% { box-shadow: 0 0 0 0 rgba(160, 9, 7, 0); } }
+    @keyframes moveDotsHorizontal { 0% { background-position: 0 center; } 100% { background-position: 14px center; } }
+    .h-text { font-size: 10px; color: var(--text-main); font-weight: 600; line-height: 1.2; word-wrap: break-word; }
     .h-circle.pending { background: #e5e7eb; }
     .h-line.pending { background-image: radial-gradient(circle, #e5e7eb 40%, transparent 45%); }
   </style>
@@ -438,9 +192,7 @@
     </div>
 
     <div class="tracking-bar-container">
-      <button class="tracking-bar-btn" onclick="openTrackModal()">
-        🔍 Track your shipment 📦
-      </button>
+      <button class="tracking-bar-btn" onclick="openTrackModal()">🔍 Track your shipment 📦</button>
     </div>
 
     <div class="brand-tabs-container">
@@ -469,10 +221,8 @@
 
   <div id="contact-modal" class="modal" onclick="closeModal('contact-modal')">
     <div class="modal-content" onclick="event.stopPropagation()">
-      <h3 style="margin-top:0;">Order Platforms</h3>
-      <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">
-        Choose a platform to place your order
-      </p>
+      <h3>Order Platforms</h3>
+      <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">Choose a platform to place your order</p>
       <div style="display:flex; flex-direction:column; gap:12px;">
         <button class="contact-option-btn fb"    onclick="redirectToPlatform('messenger')">💬 Facebook Page</button>
         <button class="contact-option-btn phone" onclick="redirectToPlatform('phone')">📞 Direct Phone Call</button>
@@ -483,10 +233,8 @@
 
   <div id="track-modal" class="modal" onclick="closeModal('track-modal')">
     <div class="modal-content" onclick="event.stopPropagation()">
-      <h3 style="margin-top:0; color: var(--text-main);">Track Your Shipment</h3>
-      <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">
-        ကျေးဇူးပြု၍ သင့်ရဲ့ Phone Number ကို ရိုက်ထည့်ပေးပါ။
-      </p>
+      <h3 style="margin-top:0;">Track Your Shipment</h3>
+      <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">ကျေးဇူးပြု၍ သင့်ရဲ့ Phone Number ကို ရိုက်ထည့်ပေးပါ။</p>
       <input type="text" id="tracking-input" class="track-input" placeholder="e.g., 09xxxxxxxx" onkeypress="if(event.key === 'Enter') submitTracking()">
       <button class="shop-now-btn" onclick="submitTracking()" style="padding:14px; font-size:15px;">Track Now</button>
     </div>
@@ -494,49 +242,13 @@
 
   <div id="track-result-modal" class="modal" onclick="closeModal('track-result-modal')">
     <div class="modal-content" onclick="event.stopPropagation()">
-      <h3 style="margin-top:0; margin-bottom: 10px; color: var(--text-main);">Shipment Status</h3>
-      
-      <p style="font-size:15px; color:var(--text-main); font-weight: bold; margin-top: 0; margin-bottom: 20px;">
-        Name: <span id="display-customer-name" style="color: var(--text-accent);"></span> <br>
-        Phone: <span id="display-track-id" style="font-weight: normal;"></span>
+      <h3 style="margin-top:0; margin-bottom: 15px; color: var(--text-main);">Shipment Status</h3>
+      <p style="font-size:16px; color:var(--text-main); font-weight: bold; text-align: left; margin-bottom: 15px; background: #fee2e2; padding: 12px; border-radius: 8px;">
+        👤 Name: <span id="display-customer-name" style="color: var(--text-accent);"></span> <br>
+        📞 Phone: <span id="display-track-id" style="font-weight: normal;"></span>
       </p>
 
-      <div class="horizontal-timeline" id="tracking-timeline">
-        <div class="h-step">
-          <img class="h-icon" src="https://flagcdn.com/w40/sg.png" alt="SG">
-          <div class="h-circle-wrap">
-            <div class="h-circle" id="h-circle-1"></div>
-            <div class="h-line" id="h-line-1"></div>
-          </div>
-          <div class="h-text">Singapore</div>
-        </div>
-
-        <div class="h-step">
-          <img class="h-icon" src="https://flagcdn.com/w40/sg.png" alt="SG">
-          <div class="h-circle-wrap">
-            <div class="h-circle" id="h-circle-2"></div>
-            <div class="h-line" id="h-line-2"></div>
-          </div>
-          <div class="h-text">Singapore<br>warehouse</div>
-        </div>
-
-        <div class="h-step">
-          <img class="h-icon" src="https://flagcdn.com/w40/mm.png" alt="MM">
-          <div class="h-circle-wrap">
-            <div class="h-circle" id="h-circle-3"></div>
-            <div class="h-line" id="h-line-3"></div>
-          </div>
-          <div class="h-text">Myanmar</div>
-        </div>
-
-        <div class="h-step">
-          <img class="h-icon square" src="https://i.ibb.co/b5RvKdSQ/IMG-0619.jpg" alt="Gizmo">
-          <div class="h-circle-wrap">
-            <div class="h-circle" id="h-circle-4"></div>
-          </div>
-          <div class="h-text">Gizmo</div>
-        </div>
-      </div>
+      <div id="multi-parcels-container" style="max-height: 45vh; overflow-y: auto; padding-right: 3px;"></div>
 
       <button class="close-btn" onclick="closeModal('track-result-modal')">Close</button>
     </div>
@@ -544,27 +256,24 @@
 
   <script>
     let selectedProductForOrder = "";
+    let globalTrackingData = []; 
 
-    // ၁။ Google Script ကနေ Data ဆွဲယူမယ့် Function
     async function loadProducts() {
-      const url = 'https://script.google.com/macros/s/AKfycbxAFuZrsmCLFYp_jgpQZojPSCJd1TbMabnBqdtskqTpDyLPiOOobKRocfyPZqkHGQ62/exec';
-      
+      const url = 'https://script.google.com/macros/s/AKfycbz659VRQoUdRfXIEg0denAkFZ-0bYjXIUl5Aoq7YFAXuhZXf4j7lr4Z1apDP8Bqckf_/exec';
       try {
         const response = await fetch(url);
         const data = await response.json();
-        renderProducts(data);
+        globalTrackingData = data.tracking || [];
+        renderProducts(data.products || []);
       } catch (error) {
-        console.error("Error loading products:", error);
+        console.error("Error loading data:", error);
         document.getElementById('productGrid').innerHTML = '<div style="text-align:center; padding: 20px; width: 100%; grid-column: 1 / -1; color: var(--text-muted);">Data ချိတ်ဆက်ရာတွင် အခက်အခဲရှိနေပါသည်။ ခဏနေမှ ပြန်ကြိုးစားကြည့်ပါ။</div>';
       }
     }
 
-    // ၂။ ပစ္စည်းတွေကို HTML ထဲ ထည့်ပေးမယ့် Function
     function renderProducts(products) {
       const grid = document.getElementById('productGrid');
-      const noResultsHTML = `<div id="no-results" style="display: none;">🔍 ပစ္စည်းရှာမတွေ့ပါဗျာ။ အခြားအမည်ဖြင့် ပြန်ရှာကြည့်ပါ။</div>`;
-      let cardsHTML = noResultsHTML;
-
+      let cardsHTML = `<div id="no-results" style="display: none;">🔍 ပစ္စည်းရှာမတွေ့ပါဗျာ။ အခြားအမည်ဖြင့် ပြန်ရှာကြည့်ပါ။</div>`;
       products.forEach(item => {
         cardsHTML += `
           <div class="product-card visible" data-brand="${escapeHtml(item.brand || '')}" data-title="${escapeHtml(item.title || '')}" data-price="${escapeHtml(item.price || '')}" data-desc="${escapeHtml(item.desc || '')}">
@@ -576,71 +285,42 @@
           </div>
         `;
       });
-      
       grid.innerHTML = cardsHTML;
-      document.getElementById('no-results').style.display = (products.length === 0) ? 'block' : 'none';
     }
 
-    // လုံခြုံရေးအတွက် escapeHtml Function
     function escapeHtml(text) {
-      return text ? text.toString()
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;") : "";
+      return text ? text.toString().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;") : "";
     }
 
-    // Website စဖွင့်တာနဲ့ စတင်ခေါ်ယူခြင်း
-    window.onload = function() {
-      loadProducts();
-    };
+    window.onload = function() { loadProducts(); };
 
-    // Filter Function (စာလုံးအကြီးအသေးမှားရင် ကာကွယ်ရန် toLowerCase ထည့်ထားသည်)
     function filterBrand(brand, element) {
       document.getElementById('searchBar').value = "";
       document.getElementById('no-results').style.display = 'none';
       document.querySelectorAll('.brand-tab').forEach(t => t.classList.remove('active'));
-      if (element) { element.classList.add('active'); }
-      
+      if (element) element.classList.add('active');
       document.querySelectorAll('.product-card').forEach(card => {
         const cardBrand = card.dataset.brand ? card.dataset.brand.toLowerCase().trim() : "";
-        const targetBrand = brand.toLowerCase().trim();
-        const isMatch = targetBrand === 'all' || cardBrand === targetBrand;
-        card.classList.toggle('visible', isMatch);
+        card.classList.toggle('visible', brand.toLowerCase().trim() === 'all' || cardBrand === brand.toLowerCase().trim());
       });
     }
 
-    // Search Function
     function searchProducts() {
       const query = document.getElementById('searchBar').value.toLowerCase().trim();
-      if (query === "") {
-        const allTab = document.getElementById('tab-all');
-        filterBrand('all', allTab);
-        return;
-      }
-      
+      if (query === "") { filterBrand('all', document.getElementById('tab-all')); return; }
       document.querySelectorAll('.brand-tab').forEach(t => t.classList.remove('active'));
       let count = 0;
-      
       document.querySelectorAll('.product-card').forEach(card => {
         const title = card.dataset.title ? card.dataset.title.toLowerCase() : "";
         const brand = card.dataset.brand ? card.dataset.brand.toLowerCase() : "";
-        
         const shouldShow = title.includes(query) || brand.includes(query);
         card.classList.toggle('visible', shouldShow);
         if (shouldShow) count++;
       });
-      
       document.getElementById('no-results').style.display = (count === 0) ? 'block' : 'none';
     }
 
-    // Modals Control
-    function showImage(src) {
-      document.getElementById('modal-img').src = src;
-      openModalOverlay('image-modal');
-    }
-
+    function showImage(src) { document.getElementById('modal-img').src = src; openModalOverlay('image-modal'); }
     function openDetails(card) {
       document.getElementById('d-title').innerText = card.dataset.title;
       document.getElementById('d-price').innerText = card.dataset.price;
@@ -648,110 +328,104 @@
       document.getElementById('modal-order-btn').onclick = () => orderProduct(card.dataset.title);
       openModalOverlay('details-modal');
     }
+    function orderProduct(title) { selectedProductForOrder = title; closeModal('details-modal'); openModalOverlay('contact-modal'); }
+    function openTrackModal() { document.getElementById('tracking-input').value = ""; openModalOverlay('track-modal'); }
 
-    function orderProduct(title) {
-      selectedProductForOrder = title;
-      closeModal('details-modal');
-      openModalOverlay('contact-modal');
-    }
-
-    /* --- Tracking Dynamic System --- */
-    function openTrackModal() {
-      document.getElementById('tracking-input').value = ""; 
-      openModalOverlay('track-modal');
-    }
-
+    /* --- Dynamic Multi-Item Tracking Logic --- */
     function submitTracking() {
       const phoneNo = document.getElementById('tracking-input').value.trim();
-      if(phoneNo === "") {
-        alert("Phone Number ထည့်ပေးပါဗျာ။");
+      if(phoneNo === "") { alert("Phone Number ထည့်ပေးပါဗျာ။"); return; }
+
+      const cleanInput = phoneNo.replace(/\s+/g, '');
+      
+      // ဖုန်းနံပါတ်တူသမျှ အော်ဒါအားလုံးကို filter ဖြင့် အကုန်ဆွဲထုတ်ခြင်း
+      const matchedRecords = globalTrackingData.filter(row => {
+        if (!row.phone) return false;
+        return row.phone.toString().replace(/\s+/g, '') === cleanInput;
+      });
+
+      if (matchedRecords.length === 0) {
+        alert("Phone Number မမှန်ကန်ပါ သို့မဟုတ် ပါဆယ်စာရင်း မရှိသေးပါ။");
         return;
       }
 
-      let customerName = "";
-      for(let i=1; i<=4; i++) {
-        document.getElementById(`h-circle-${i}`).className = "h-circle pending";
-        document.getElementById(`h-circle-${i}`).innerHTML = ""; 
-        if(i < 4) document.getElementById(`h-line-${i}`).className = "h-line pending";
-      }
-
-      if (phoneNo === "09753500060") {
-        customerName = "Ko Nai Ling Oo"; 
-        document.getElementById('h-circle-1').className = "h-circle active";
-        document.getElementById('h-line-1').className = "h-line transit";
-      } 
-      else if (phoneNo === "09424745705") {
-        customerName = "Ma Theint"; 
-        document.getElementById('h-circle-1').className = "h-circle completed";
-        document.getElementById('h-line-1').className = "h-line completed";
-        document.getElementById('h-circle-2').className = "h-circle active";
-        document.getElementById('h-line-2').className = "h-line transit";
-      } 
-      else if (phoneNo === "09794020717") {
-        customerName = "Ko Sai Thurein Htun"; 
-        document.getElementById('h-circle-1').className = "h-circle completed";
-        document.getElementById('h-line-1').className = "h-line completed";
-        document.getElementById('h-circle-2').className = "h-circle completed";
-        document.getElementById('h-line-2').className = "h-line completed";
-        document.getElementById('h-circle-3').className = "h-circle active";
-        document.getElementById('h-line-3').className = "h-line transit";
-      } 
-      else if (phoneNo === "09772307844") {
-        customerName = "Ma Thinzar"; 
-        document.getElementById('h-circle-1').className = "h-circle completed";
-        document.getElementById('h-line-1').className = "h-line completed";
-        document.getElementById('h-circle-2').className = "h-circle completed";
-        document.getElementById('h-line-2').className = "h-line completed";
-        document.getElementById('h-circle-3').className = "h-circle completed";
-        document.getElementById('h-line-3').className = "h-line completed";
-        document.getElementById('h-circle-4').className = "h-circle final";
-        document.getElementById('h-circle-4').innerHTML = "✔"; 
-      }
-      else {
-        alert("Phone Number မမှန်ကန်ပါ။ ကျေးဇူးပြု၍ ပြန်လည်စစ်ဆေးပါ။");
-        return;
-      }
-
+      // ခေါင်းစဉ်အတွက် အမည်သတ်မှတ်ခြင်း
       document.getElementById('display-track-id').innerText = phoneNo;
-      document.getElementById('display-customer-name').innerText = customerName;
+      document.getElementById('display-customer-name').innerText = matchedRecords[0].name || "Customer";
+
+      const container = document.getElementById('multi-parcels-container');
+      container.innerHTML = ""; // နေရာဟောင်းကို အရင်ရှင်းထုတ်ခြင်း
+
+      // အော်ဒါတစ်ခုချင်းစီအလိုက် Timeline UI များ ထုတ်လုပ်ပေးခြင်း
+      matchedRecords.forEach((record, index) => {
+        const pName = record.product || "Unknown Product";
+        const pDate = record.date ? record.date.toString().split("T")[0] : "N/A"; // ရက်စွဲပုံစံရှင်းရန်
+        const statusCode = parseInt(record.status) || 1;
+
+        // Timeline တစ်ခုချင်းစီအတွက် HTML ပုံစံထုတ်ခြင်း
+        let cardHTML = `
+          <div class="parcel-card">
+            <div class="parcel-header">
+              <span class="parcel-title">📦 ${escapeHtml(pName)}</span>
+              <span>📅 Order Date: ${escapeHtml(pDate)}</span>
+            </div>
+            <div class="horizontal-timeline">
+              <div class="h-step">
+                <img class="h-icon" src="https://flagcdn.com/w40/sg.png" alt="SG">
+                <div class="h-circle-wrap">
+                  <div class="h-circle ${statusCode === 1 ? 'active' : (statusCode > 1 ? 'completed' : 'pending')}" id="c1-${index}"></div>
+                  <div class="h-line ${statusCode === 1 ? 'transit' : (statusCode > 1 ? 'completed' : 'pending')}" id="l1-${index}"></div>
+                </div>
+                <div class="h-text">Singapore</div>
+              </div>
+              <div class="h-step">
+                <img class="h-icon" src="https://flagcdn.com/w40/sg.png" alt="SG">
+                <div class="h-circle-wrap">
+                  <div class="h-circle ${statusCode === 2 ? 'active' : (statusCode > 2 ? 'completed' : 'pending')}" id="c2-${index}"></div>
+                  <div class="h-line ${statusCode === 2 ? 'transit' : (statusCode > 2 ? 'completed' : 'pending')}" id="l2-${index}"></div>
+                </div>
+                <div class="h-text">Warehouse</div>
+              </div>
+              <div class="h-step">
+                <img class="h-icon" src="https://flagcdn.com/w40/mm.png" alt="MM">
+                <div class="h-circle-wrap">
+                  <div class="h-circle ${statusCode === 3 ? 'active' : (statusCode > 3 ? 'completed' : 'pending')}" id="c3-${index}"></div>
+                  <div class="h-line ${statusCode === 3 ? 'transit' : (statusCode > 3 ? 'completed' : 'pending')}" id="l3-${index}"></div>
+                </div>
+                <div class="h-text">Myanmar</div>
+              </div>
+              <div class="h-step">
+                <img class="h-icon square" src="https://i.ibb.co/b5RvKdSQ/IMG-0619.jpg" alt="Gizmo">
+                <div class="h-circle-wrap">
+                  <div class="h-circle ${statusCode >= 4 ? 'final' : 'pending'}" id="c4-${index}">${statusCode >= 4 ? '✔' : ''}</div>
+                </div>
+                <div class="h-text">Gizmo</div>
+              </div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += cardHTML;
+      });
 
       closeModal('track-modal');
       setTimeout(() => { openModalOverlay('track-result-modal'); }, 300);
     }
 
-    function openModalOverlay(id) {
-      document.getElementById(id).classList.add('show');
-      document.body.classList.add('modal-open');
-    }
-
+    function openModalOverlay(id) { document.getElementById(id).classList.add('show'); document.body.classList.add('modal-open'); }
     function closeModal(id) {
       document.getElementById(id).classList.remove('show');
-      if (!document.querySelector('.modal.show')) {
-        document.body.classList.remove('modal-open');
-      }
+      if (!document.querySelector('.modal.show')) document.body.classList.remove('modal-open');
     }
 
-    // Redirect Platforms
     function redirectToPlatform(platform) {
-      let url = "";
-      let isPhoneCall = false;
-
-      if (platform === 'messenger') {
-        url = "https://m.me/100067458529116";
-      } else if (platform === 'phone') {
-        url = "tel:09957399906";
-        isPhoneCall = true;
-      } else if (platform === 'telegram') {
+      let url = ""; let isPhoneCall = false;
+      if (platform === 'messenger') url = "https://m.me/100067458529116";
+      else if (platform === 'phone') { url = "tel:09957399906"; isPhoneCall = true; }
+      else if (platform === 'telegram') {
         url = "https://t.me/Alpakamyanmar";
-        if (selectedProductForOrder) {
-          url += "?text=" + encodeURIComponent("Hi, I want to inquire about: " + selectedProductForOrder);
-        }
+        if (selectedProductForOrder) url += "?text=" + encodeURIComponent("Hi, I want to inquire about: " + selectedProductForOrder);
       }
-
-      if (url) {
-        if (isPhoneCall) { window.location.href = url; }
-        else { window.open(url, '_blank'); }
-      }
+      if (url) { if (isPhoneCall) window.location.href = url; else window.open(url, '_blank'); }
       closeModal('contact-modal');
     }
   </script>
