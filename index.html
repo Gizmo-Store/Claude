@@ -16,6 +16,11 @@
       --text-accent: #A00907;   
       --text-muted: #6b7280;    
       --border-color: #e5e7eb;  
+      --success: #22c55e; /* Green color for final status */
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
     }
 
     body {
@@ -24,6 +29,7 @@
       background: var(--bg-main);
       color: var(--text-main);
       padding-bottom: env(safe-area-inset-bottom);
+      -webkit-tap-highlight-color: transparent; 
     }
     body.modal-open {
       overflow: hidden;
@@ -44,7 +50,7 @@
       display: inline-block;
       padding-left: 100%;
       animation: marquee 10s linear infinite;
-      font-size: 15px;
+      font-size: 18px;
       font-weight: bold;
       color: #FFFFFF;
     }
@@ -78,23 +84,49 @@
       width: 100%;
       border-radius: 20px;
       border: none;
-      box-sizing: border-box;
       font-size: 16px;
       outline: none;
       background: #ffffff;
       color: var(--text-main);
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    #searchBar:focus {
+      box-shadow: 0 4px 8px rgba(160, 9, 7, 0.2);
     }
     #searchBar::placeholder { color: #9ca3af; }
 
     /* ================= Tracking Bar ================= */
     .tracking-bar-container { padding: 15px 15px 0 15px; max-width: 1000px; margin: auto; }
     .tracking-bar-btn {
-      width: 100%; background: #fef2f2; color: var(--primary); border: 2px dashed #fca5a5;
-      padding: 14px; border-radius: 12px; font-size: 15px; font-weight: bold; cursor: pointer;
-      transition: all 0.3s ease; display: flex; justify-content: center; align-items: center; gap: 8px;
+      width: 100%; 
+      background: var(--primary);
+      color: var(--text-white);
+      border: none;
+      padding: 16px; 
+      border-radius: 50px; 
+      font-size: 16px; 
+      font-weight: bold; 
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, background 0.2s ease; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(160, 9, 7, 0.35); 
     }
-    .tracking-bar-btn:hover { background: #fee2e2; border-color: #f87171; }
+    .tracking-bar-btn:active {
+      transform: scale(0.96) translateY(2px);
+      box-shadow: 0 2px 6px rgba(160, 9, 7, 0.3);
+      background: #8a0705;
+    }
+    @media (hover: hover) {
+      .tracking-bar-btn:hover { 
+        background: #8a0705; 
+        transform: translateY(-2px); 
+        box-shadow: 0 6px 16px rgba(160, 9, 7, 0.45);
+      }
+    }
 
     /* ================= Brand Tabs ================= */
     .brand-tabs-container {
@@ -111,68 +143,139 @@
       background: var(--primary); color: var(--text-white); border-color: var(--primary);
       box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
     }
+    .brand-tab:active {
+      transform: scale(0.95);
+    }
 
     /* ================= Product Grid ================= */
     .products-container { padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; max-width: 1000px; margin: auto; }
     .product-card {
       background: var(--bg-card); border-radius: 15px; padding: 12px; text-align: center; border: 1px solid var(--border-color);
-      display: none; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: none; flex-direction: column; justify-content: space-between; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
-    .product-card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(220, 38, 38, 0.15); }
-    .product-card.visible { display: flex; animation: fadeInUp 0.4s ease forwards; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .product-card.visible { display: flex; animation: fadeInUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
     .product-card h4 { font-size: 15px; margin: 10px 0 5px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-main); }
     .product-card p { margin: 0 0 10px 0; font-size: 14px; color: var(--text-accent); font-weight: bold; }
-    .product-img { width: 100%; height: 160px; object-fit: cover; border-radius: 10px; cursor: pointer; background: #f3f4f6; }
-    .view-btn { background: #fef2f2; color: var(--primary); padding: 10px; border-radius: 8px; border: 1px solid #fecaca; cursor: pointer; width: 100%; margin-top: auto; font-size: 13px; font-weight: bold; transition: background 0.3s; }
-    .view-btn:hover { background: #fee2e2; }
-    .shop-now-btn { background: var(--primary); color: var(--text-white); padding: 10px; border-radius: 8px; border: none; cursor: pointer; width: 100%; margin-top: 8px; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3); transition: background 0.3s; }
-    .shop-now-btn:hover { background: #8a0705; }
+    .product-img { width: 100%; height: 160px; object-fit: cover; border-radius: 10px; cursor: pointer; background: #f3f4f6; transition: transform 0.3s ease; }
+    
+    .view-btn { background: #fef2f2; color: var(--primary); padding: 10px; border-radius: 8px; border: 1px solid #fecaca; cursor: pointer; width: 100%; margin-top: auto; font-size: 13px; font-weight: bold; transition: all 0.2s ease; }
+    .view-btn:active { transform: scale(0.95); background: #fee2e2; }
+    
+    .shop-now-btn { background: var(--primary); color: var(--text-white); padding: 10px; border-radius: 8px; border: none; cursor: pointer; width: 100%; margin-top: 8px; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3); transition: all 0.2s ease; }
+    .shop-now-btn:active { transform: scale(0.95); box-shadow: 0 1px 2px rgba(220, 38, 38, 0.3); background: #8a0705; }
+    
+    @media (hover: hover) {
+      .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(220, 38, 38, 0.12); }
+      .view-btn:hover { background: #fee2e2; }
+      .shop-now-btn:hover { background: #8a0705; box-shadow: 0 4px 8px rgba(220, 38, 38, 0.4); }
+    }
+    
     #no-results { display: none; text-align: center; grid-column: 1 / -1; padding: 40px 20px; color: var(--text-muted); }
 
     /* ================= Modals ================= */
     .modal {
       display: flex; visibility: hidden; pointer-events: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; opacity: 0; transition: opacity 0.3s ease, visibility 0.3s ease;
+      background: rgba(0,0,0,0); 
+      backdrop-filter: blur(0px);
+      justify-content: center; align-items: center; padding: 20px; opacity: 0; transition: background 0.3s ease, backdrop-filter 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
     }
-    .modal.show { visibility: visible; pointer-events: auto; opacity: 1; }
-    .modal-content { background: var(--bg-modal); padding: 25px; width: 100%; max-width: 550px; border-radius: 20px; text-align: center; max-height: 85vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.2); color: var(--text-main); }
-    .track-input { width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid #d1d5db; background: #f9fafb; color: var(--text-main); margin-bottom: 15px; font-size: 16px; outline: none; box-sizing: border-box; transition: border 0.3s; }
-    .track-input:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2); }
-    .contact-option-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px; border-radius: 12px; border: none; font-size: 15px; font-weight: bold; color: #fff; cursor: pointer; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .modal.show { 
+      visibility: visible; pointer-events: auto; opacity: 1; 
+      background: rgba(0,0,0,0.5); 
+      backdrop-filter: blur(4px); 
+    }
+    
+    .modal-content { 
+      background: var(--bg-modal); padding: 25px; width: 100%; max-width: 550px; border-radius: 20px; text-align: center; max-height: 85vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.2); color: var(--text-main); 
+      transform: scale(0.95) translateY(20px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1), opacity 0.3s ease;
+    }
+    .modal.show .modal-content {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+
+    #image-modal img {
+      transform: scale(0.9);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    }
+    .modal.show #modal-img {
+      transform: scale(1);
+    }
+
+    .track-input { width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid #d1d5db; background: #f9fafb; color: var(--text-main); margin-bottom: 15px; font-size: 16px; outline: none; transition: border 0.3s, box-shadow 0.3s; }
+    .track-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2); }
+    
+    .contact-option-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px; border-radius: 12px; border: none; font-size: 15px; font-weight: bold; color: #fff; cursor: pointer; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s ease; }
+    .contact-option-btn:active { transform: scale(0.96); }
     .fb { background: #0084FF; }
     .phone { background: #10b981; }
     .tele { background: #229ED9; }
-    .close-btn { background: #f3f4f6; color: var(--text-main); border: none; padding: 10px; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 20px; }
+    
+    .close-btn { background: #f3f4f6; color: var(--text-main); border: none; padding: 12px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 20px; transition: all 0.2s ease; }
+    .close-btn:active { transform: scale(0.96); background: #d1d5db; }
 
     /* ================= Multi Item Parcel Cards UI ================= */
     .parcel-card {
-      background: #f9fafb; border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; text-align: left; box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      background: #f9fafb; border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; text-align: left; box-shadow: 0 1px 3px rgba(0,0,0,0.02); transition: transform 0.3s ease;
     }
+    .parcel-card:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
     .parcel-header { display: flex; justify-content: space-between; border-bottom: 1px dashed #d1d5db; padding-bottom: 8px; margin-bottom: 12px; font-size: 13px; color: var(--text-muted); }
     .parcel-title { font-weight: bold; color: var(--primary); font-size: 15px; }
 
     /* ================= Horizontal Timeline UI ================= */
     .horizontal-timeline { display: flex; justify-content: space-between; width: 100%; padding: 20px 0 5px 0; position: relative; }
     .h-step { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; text-align: center; z-index: 2; }
-    .h-icon { width: 22px; height: 22px; object-fit: cover; margin-bottom: 10px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .h-icon.square { border-radius: 4px; }
+    
+    .h-icon { width: 30px; height: 30px; object-fit: cover; margin-bottom: 10px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.15); transition: transform 0.3s ease;}
+    .h-step:hover .h-icon { transform: scale(1.1); }
+    .h-icon.square { border-radius: 6px; }
+    
     .h-circle-wrap { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; height: 22px; margin-bottom: 10px; }
-    .h-circle { width: 22px; height: 22px; border-radius: 50%; background: #e5e7eb; z-index: 2; transition: all 0.3s; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold; }
-    .h-line { position: absolute; top: 50%; left: 50%; width: 100%; height: 6px; transform: translateY(-50%); z-index: 1; background-image: radial-gradient(circle, #e5e7eb 40%, transparent 45%); background-size: 14px 6px; background-repeat: repeat-x; background-position: left center; }
+    .h-circle { width: 22px; height: 22px; border-radius: 50%; background: #e5e7eb; z-index: 2; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold; }
     
-    .h-circle.completed, .h-circle.active { background: var(--primary); }
-    .h-circle.active { box-shadow: 0 0 0 4px rgba(160, 9, 7, 0.2); animation: pulseRed 1.5s infinite; }
-    .h-circle.final { background: #22c55e; }
-    .h-line.completed { background-image: radial-gradient(circle, var(--primary) 40%, transparent 45%); }
-    .h-line.transit { background-image: radial-gradient(circle, var(--primary) 40%, transparent 45%); animation: moveDotsHorizontal 1s linear infinite; }
+    .h-circle.completed, .h-circle.active { background: var(--primary); transform: scale(1.05); }
+    .h-circle.active { box-shadow: 0 0 0 4px rgba(160, 9, 7, 0.2); animation: pulseRed 1.8s infinite; }
     
-    @keyframes pulseRed { 0% { box-shadow: 0 0 0 0 rgba(160, 9, 7, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(160, 9, 7, 0); } 100% { box-shadow: 0 0 0 0 rgba(160, 9, 7, 0); } }
-    @keyframes moveDotsHorizontal { 0% { background-position: 0 center; } 100% { background-position: 14px center; } }
+    .h-circle.final { background: var(--success); box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2); animation: pulseGreen 1.8s infinite; transform: scale(1.1); }
+    
+    @keyframes pulseRed { 
+      0% { box-shadow: 0 0 0 0 rgba(160, 9, 7, 0.5); } 
+      70% { box-shadow: 0 0 0 8px rgba(160, 9, 7, 0); } 
+      100% { box-shadow: 0 0 0 0 rgba(160, 9, 7, 0); } 
+    }
+    
+    @keyframes pulseGreen { 
+      0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); } 
+      70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); } 
+      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } 
+    }
+    
+    .h-line { 
+      position: absolute; top: 50%; left: 50%; width: 100%; height: 12px; transform: translateY(-50%); z-index: 1; 
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23e5e7eb' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E"); 
+      background-size: 12px 12px; 
+      background-repeat: repeat-x; 
+      background-position: left center; 
+      transition: background-image 0.4s ease;
+    }
+    .h-line.completed { 
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A00907' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E"); 
+    }
+    .h-line.transit { 
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A00907' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E"); 
+      animation: moveArrowsHorizontal 1s linear infinite; 
+    }
+    
+    @keyframes moveArrowsHorizontal { 
+      0% { background-position: 0 center; } 
+      100% { background-position: 12px center; } 
+    }
+    
     .h-text { font-size: 10px; color: var(--text-main); font-weight: 600; line-height: 1.2; word-wrap: break-word; }
-    .h-circle.pending { background: #e5e7eb; }
-    .h-line.pending { background-image: radial-gradient(circle, #e5e7eb 40%, transparent 45%); }
   </style>
 </head>
 <body>
@@ -202,7 +305,7 @@
     </div>
 
     <div class="products-container" id="productGrid">
-      <div id="no-results">🔍 ပစ္စည်းရှာမတွေ့ပါဗျာ။ အခြားအမည်ဖြင့် ပြန်ရှာကြည့်ပါ။</div>
+      <div id="no-results">🔍 ပစ္စည်းရှာမတွေ့ပါ။ အခြားအမည်ဖြင့် ပြန်ရှာကြည့်ပါ။</div>
     </div>
   </div>
 
@@ -244,7 +347,7 @@
     <div class="modal-content" onclick="event.stopPropagation()">
       <h3 style="margin-top:0; margin-bottom: 15px; color: var(--text-main);">Shipment Status</h3>
       <p style="font-size:16px; color:var(--text-main); font-weight: bold; text-align: left; margin-bottom: 15px; background: #fee2e2; padding: 12px; border-radius: 8px;">
-        👤 Name: <span id="display-customer-name" style="color: var(--text-accent);"></span> <br>
+        👤 Name: <span id="display-customer-name" style="color: var(--text-main);"></span> <br>
         📞 Phone: <span id="display-track-id" style="font-weight: normal;"></span>
       </p>
 
@@ -273,7 +376,7 @@
 
     function renderProducts(products) {
       const grid = document.getElementById('productGrid');
-      let cardsHTML = `<div id="no-results" style="display: none;">🔍 ပစ္စည်းရှာမတွေ့ပါဗျာ။ အခြားအမည်ဖြင့် ပြန်ရှာကြည့်ပါ။</div>`;
+      let cardsHTML = `<div id="no-results" style="display: none;">🔍 ပစ္စည်းရှာမတွေ့ပါ။ အခြားအမည်ဖြင့် ပြန်ရှာကြည့်ပါ။</div>`;
       products.forEach(item => {
         cardsHTML += `
           <div class="product-card visible" data-brand="${escapeHtml(item.brand || '')}" data-title="${escapeHtml(item.title || '')}" data-price="${escapeHtml(item.price || '')}" data-desc="${escapeHtml(item.desc || '')}">
@@ -329,79 +432,163 @@
       openModalOverlay('details-modal');
     }
     function orderProduct(title) { selectedProductForOrder = title; closeModal('details-modal'); openModalOverlay('contact-modal'); }
-    function openTrackModal() { document.getElementById('tracking-input').value = ""; openModalOverlay('track-modal'); }
+    
+    function openTrackModal() { 
+      document.getElementById('tracking-input').value = ""; 
+      openModalOverlay('track-modal');
+      setTimeout(() => { document.getElementById('tracking-input').focus(); }, 300);
+    }
 
-    /* --- Dynamic Multi-Item Tracking Logic --- */
     function submitTracking() {
       const phoneNo = document.getElementById('tracking-input').value.trim();
-      if(phoneNo === "") { alert("Phone Number ထည့်ပေးပါဗျာ။"); return; }
+      if(phoneNo === "") { alert("ကျေးဇူးပြု၍ Phone Number ထည့်ပေးပါ။"); return; }
 
       const cleanInput = phoneNo.replace(/\s+/g, '');
       
-      // ဖုန်းနံပါတ်တူသမျှ အော်ဒါအားလုံးကို filter ဖြင့် အကုန်ဆွဲထုတ်ခြင်း
       const matchedRecords = globalTrackingData.filter(row => {
         if (!row.phone) return false;
         return row.phone.toString().replace(/\s+/g, '') === cleanInput;
       });
 
       if (matchedRecords.length === 0) {
-        alert("Phone Number မမှန်ကန်ပါ သို့မဟုတ် ပါဆယ်စာရင်း မရှိသေးပါ။");
+        alert("Phone Number မမှန်ကန်ပါ။ ပါဆယ်စာရင်း မရှိသေးပါ။");
         return;
       }
 
-      // ခေါင်းစဉ်အတွက် အမည်သတ်မှတ်ခြင်း
       document.getElementById('display-track-id').innerText = phoneNo;
       document.getElementById('display-customer-name').innerText = matchedRecords[0].name || "Customer";
 
       const container = document.getElementById('multi-parcels-container');
-      container.innerHTML = ""; // နေရာဟောင်းကို အရင်ရှင်းထုတ်ခြင်း
+      container.innerHTML = ""; 
 
-      // အော်ဒါတစ်ခုချင်းစီအလိုက် Timeline UI များ ထုတ်လုပ်ပေးခြင်း
       matchedRecords.forEach((record, index) => {
         const pName = record.product || "Unknown Product";
-        const pDate = record.date ? record.date.toString().split("T")[0] : "N/A"; // ရက်စွဲပုံစံရှင်းရန်
-        const statusCode = parseInt(record.status) || 1;
+        
+        let pDate = "N/A";
+        if (record.date) {
+          try {
+            pDate = record.date.toString().split("T")[0];
+          } catch (e) {
+            pDate = "N/A";
+          }
+        }
+        
+        let rawStatus = record.status ? record.status.toString().trim().toLowerCase() : "s1";
+        
+        if (["1", "2", "3", "4"].includes(rawStatus)) {
+          rawStatus = "s" + rawStatus;
+        }
 
-        // Timeline တစ်ခုချင်းစီအတွက် HTML ပုံစံထုတ်ခြင်း
-        let cardHTML = `
-          <div class="parcel-card">
-            <div class="parcel-header">
-              <span class="parcel-title">📦 ${escapeHtml(pName)}</span>
-              <span>📅 Order Date: ${escapeHtml(pDate)}</span>
-            </div>
+        let routeType = rawStatus.charAt(0);
+        let stepNum = parseInt(rawStatus.substring(1)) || 1;
+
+        if (!['s', 'c', 't'].includes(routeType)) {
+          routeType = 's';
+          stepNum = 1;
+        }
+
+        let timelineHTML = "";
+
+        if (routeType === 's') {
+          timelineHTML = `
             <div class="horizontal-timeline">
               <div class="h-step">
                 <img class="h-icon" src="https://flagcdn.com/w40/sg.png" alt="SG">
                 <div class="h-circle-wrap">
-                  <div class="h-circle ${statusCode === 1 ? 'active' : (statusCode > 1 ? 'completed' : 'pending')}" id="c1-${index}"></div>
-                  <div class="h-line ${statusCode === 1 ? 'transit' : (statusCode > 1 ? 'completed' : 'pending')}" id="l1-${index}"></div>
+                  <div class="h-circle ${stepNum === 1 ? 'active' : (stepNum > 1 ? 'completed' : 'pending')}"></div>
+                  <div class="h-line ${stepNum === 1 ? 'transit' : (stepNum > 1 ? 'completed' : 'pending')}"></div>
                 </div>
                 <div class="h-text">Singapore</div>
               </div>
               <div class="h-step">
                 <img class="h-icon" src="https://flagcdn.com/w40/sg.png" alt="SG">
                 <div class="h-circle-wrap">
-                  <div class="h-circle ${statusCode === 2 ? 'active' : (statusCode > 2 ? 'completed' : 'pending')}" id="c2-${index}"></div>
-                  <div class="h-line ${statusCode === 2 ? 'transit' : (statusCode > 2 ? 'completed' : 'pending')}" id="l2-${index}"></div>
+                  <div class="h-circle ${stepNum === 2 ? 'active' : (stepNum > 2 ? 'completed' : 'pending')}"></div>
+                  <div class="h-line ${stepNum === 2 ? 'transit' : (stepNum > 2 ? 'completed' : 'pending')}"></div>
                 </div>
                 <div class="h-text">Warehouse</div>
               </div>
               <div class="h-step">
                 <img class="h-icon" src="https://flagcdn.com/w40/mm.png" alt="MM">
                 <div class="h-circle-wrap">
-                  <div class="h-circle ${statusCode === 3 ? 'active' : (statusCode > 3 ? 'completed' : 'pending')}" id="c3-${index}"></div>
-                  <div class="h-line ${statusCode === 3 ? 'transit' : (statusCode > 3 ? 'completed' : 'pending')}" id="l3-${index}"></div>
+                  <div class="h-circle ${stepNum === 3 ? 'active' : (stepNum > 3 ? 'completed' : 'pending')}"></div>
+                  <div class="h-line ${stepNum === 3 ? 'transit' : (stepNum > 3 ? 'completed' : 'pending')}"></div>
                 </div>
                 <div class="h-text">Myanmar</div>
               </div>
               <div class="h-step">
                 <img class="h-icon square" src="https://i.ibb.co/b5RvKdSQ/IMG-0619.jpg" alt="Gizmo">
                 <div class="h-circle-wrap">
-                  <div class="h-circle ${statusCode >= 4 ? 'final' : 'pending'}" id="c4-${index}">${statusCode >= 4 ? '✔' : ''}</div>
+                  <div class="h-circle ${stepNum >= 4 ? 'final' : 'pending'}">${stepNum >= 4 ? '✔' : ''}</div>
                 </div>
                 <div class="h-text">Gizmo</div>
               </div>
+            </div>`;
+        } 
+        else if (routeType === 'c') {
+          timelineHTML = `
+            <div class="horizontal-timeline">
+              <div class="h-step">
+                <img class="h-icon" src="https://flagcdn.com/w40/cn.png" alt="CN">
+                <div class="h-circle-wrap">
+                  <div class="h-circle ${stepNum === 1 ? 'active' : (stepNum > 1 ? 'completed' : 'pending')}"></div>
+                  <div class="h-line ${stepNum === 1 ? 'transit' : (stepNum > 1 ? 'completed' : 'pending')}"></div>
+                </div>
+                <div class="h-text">China</div>
+              </div>
+              <div class="h-step">
+                <img class="h-icon" src="https://flagcdn.com/w40/mm.png" alt="MM">
+                <div class="h-circle-wrap">
+                  <div class="h-circle ${stepNum === 2 ? 'active' : (stepNum > 2 ? 'completed' : 'pending')}"></div>
+                  <div class="h-line ${stepNum === 2 ? 'transit' : (stepNum > 2 ? 'completed' : 'pending')}"></div>
+                </div>
+                <div class="h-text">Myanmar</div>
+              </div>
+              <div class="h-step">
+                <img class="h-icon square" src="https://i.ibb.co/b5RvKdSQ/IMG-0619.jpg" alt="Gizmo">
+                <div class="h-circle-wrap">
+                  <div class="h-circle ${stepNum >= 3 ? 'final' : 'pending'}">${stepNum >= 3 ? '✔' : ''}</div>
+                </div>
+                <div class="h-text">Gizmo</div>
+              </div>
+            </div>`;
+        } 
+        else if (routeType === 't') {
+          timelineHTML = `
+            <div class="horizontal-timeline">
+              <div class="h-step">
+                <img class="h-icon" src="https://flagcdn.com/w40/th.png" alt="TH">
+                <div class="h-circle-wrap">
+                  <div class="h-circle ${stepNum === 1 ? 'active' : (stepNum > 1 ? 'completed' : 'pending')}"></div>
+                  <div class="h-line ${stepNum === 1 ? 'transit' : (stepNum > 1 ? 'completed' : 'pending')}"></div>
+                </div>
+                <div class="h-text">Thailand</div>
+              </div>
+              <div class="h-step">
+                <img class="h-icon" src="https://flagcdn.com/w40/mm.png" alt="MM">
+                <div class="h-circle-wrap">
+                  <div class="h-circle ${stepNum === 2 ? 'active' : (stepNum > 2 ? 'completed' : 'pending')}"></div>
+                  <div class="h-line ${stepNum === 2 ? 'transit' : (stepNum > 2 ? 'completed' : 'pending')}"></div>
+                </div>
+                <div class="h-text">Myanmar</div>
+              </div>
+              <div class="h-step">
+                <img class="h-icon square" src="https://i.ibb.co/b5RvKdSQ/IMG-0619.jpg" alt="Gizmo">
+                <div class="h-circle-wrap">
+                  <div class="h-circle ${stepNum >= 3 ? 'final' : 'pending'}">${stepNum >= 3 ? '✔' : ''}</div>
+                </div>
+                <div class="h-text">Gizmo</div>
+              </div>
+            </div>`;
+        }
+
+        let cardHTML = `
+          <div class="parcel-card">
+            <div class="parcel-header">
+              <span class="parcel-title">📦 ${escapeHtml(pName)}</span>
+              <span>📅 Order Date: ${escapeHtml(pDate)}</span>
             </div>
+            ${timelineHTML}
           </div>
         `;
         container.innerHTML += cardHTML;
