@@ -76,7 +76,7 @@
     }
     .header-container { max-width: 1000px; margin: auto; width: 100%; }
     .header-top { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-    .shop-logo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
+    .shop-logo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
     .shop-title { font-weight: bold; font-size: 18px; }
     
     #searchBar {
@@ -253,7 +253,7 @@
     .horizontal-timeline { display: flex; justify-content: space-between; width: 100%; padding: 20px 0 5px 0; position: relative; }
     .h-step { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; text-align: center; z-index: 2; }
     
-    .h-icon { width: 30px; height: 30px; object-fit: cover; margin-bottom: 10px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.15); transition: transform 0.3s ease;}
+    .h-icon { width: 40px; height: 40px; object-fit: cover; margin-bottom: 10px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.15); transition: transform 0.3s ease;}
     .h-step:hover .h-icon { transform: scale(1.1); }
     .h-icon.square { border-radius: 6px; }
     
@@ -559,7 +559,7 @@
                   <div class="h-circle ${stepNum === 2 ? 'active' : (stepNum > 2 ? 'completed' : 'pending')}"></div>
                   <div class="h-line ${stepNum === 2 ? 'transit' : (stepNum > 2 ? 'completed' : 'pending')}"></div>
                 </div>
-                <div class="h-text">Warehouse</div>
+                <div class="h-text">Singapore Warehouse</div>
               </div>
               <div class="h-step">
                 <img class="h-icon" src="https://flagcdn.com/w40/mm.png" alt="MM">
@@ -590,17 +590,25 @@
                 <div class="h-text">China</div>
               </div>
               <div class="h-step">
-                <img class="h-icon" src="https://flagcdn.com/w40/mm.png" alt="MM">
+                <img class="h-icon" src="https://flagcdn.com/w40/cn.png" alt="CN">
                 <div class="h-circle-wrap">
                   <div class="h-circle ${stepNum === 2 ? 'active' : (stepNum > 2 ? 'completed' : 'pending')}"></div>
                   <div class="h-line ${stepNum === 2 ? 'transit' : (stepNum > 2 ? 'completed' : 'pending')}"></div>
+                </div>
+                <div class="h-text">China Warehouse</div>
+              </div>
+              <div class="h-step">
+                <img class="h-icon" src="https://flagcdn.com/w40/mm.png" alt="MM">
+                <div class="h-circle-wrap">
+                  <div class="h-circle ${stepNum === 3 ? 'active' : (stepNum > 3 ? 'completed' : 'pending')}"></div>
+                  <div class="h-line ${stepNum === 3 ? 'transit' : (stepNum > 3 ? 'completed' : 'pending')}"></div>
                 </div>
                 <div class="h-text">Myanmar</div>
               </div>
               <div class="h-step">
                 <img class="h-icon square" src="https://i.ibb.co/b5RvKdSQ/IMG-0619.jpg" alt="Gizmo">
                 <div class="h-circle-wrap">
-                  <div class="h-circle ${stepNum >= 3 ? 'final' : 'pending'}">${stepNum >= 3 ? '✔' : ''}</div>
+                  <div class="h-circle ${stepNum >= 4 ? 'final' : 'pending'}">${stepNum >= 4 ? '✔' : ''}</div>
                 </div>
                 <div class="h-text">Gizmo</div>
               </div>
@@ -618,17 +626,25 @@
                 <div class="h-text">Thailand</div>
               </div>
               <div class="h-step">
-                <img class="h-icon" src="https://flagcdn.com/w40/mm.png" alt="MM">
+                <img class="h-icon" src="https://flagcdn.com/w40/th.png" alt="TH">
                 <div class="h-circle-wrap">
                   <div class="h-circle ${stepNum === 2 ? 'active' : (stepNum > 2 ? 'completed' : 'pending')}"></div>
                   <div class="h-line ${stepNum === 2 ? 'transit' : (stepNum > 2 ? 'completed' : 'pending')}"></div>
+                </div>
+                <div class="h-text">Thailand Warehouse</div>
+              </div>
+              <div class="h-step">
+                <img class="h-icon" src="https://flagcdn.com/w40/mm.png" alt="MM">
+                <div class="h-circle-wrap">
+                  <div class="h-circle ${stepNum === 3 ? 'active' : (stepNum > 3 ? 'completed' : 'pending')}"></div>
+                  <div class="h-line ${stepNum === 3 ? 'transit' : (stepNum > 3 ? 'completed' : 'pending')}"></div>
                 </div>
                 <div class="h-text">Myanmar</div>
               </div>
               <div class="h-step">
                 <img class="h-icon square" src="https://i.ibb.co/b5RvKdSQ/IMG-0619.jpg" alt="Gizmo">
                 <div class="h-circle-wrap">
-                  <div class="h-circle ${stepNum >= 3 ? 'final' : 'pending'}">${stepNum >= 3 ? '✔' : ''}</div>
+                  <div class="h-circle ${stepNum >= 4 ? 'final' : 'pending'}">${stepNum >= 4 ? '✔' : ''}</div>
                 </div>
                 <div class="h-text">Gizmo</div>
               </div>
