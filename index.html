@@ -96,6 +96,29 @@
     }
     #searchBar::placeholder { color: #9ca3af; }
 
+    /* ================= Premium Loading Spinner ================= */
+    .spinner-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      grid-column: 1 / -1;
+      padding: 40px 20px;
+      color: var(--text-muted);
+    }
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #e5e7eb;
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     /* ================= Tracking Bar ================= */
     .tracking-bar-container { padding: 15px 15px 0 15px; max-width: 1000px; margin: auto; }
     .tracking-bar-btn {
@@ -305,6 +328,10 @@
     </div>
 
     <div class="products-container" id="productGrid">
+      <div class="spinner-container" id="main-spinner">
+        <div class="loading-spinner"></div>
+        <div>Loading...</div>
+      </div>
       <div id="no-results">🔍 ပစ္စည်းရှာမတွေ့ပါ။ အခြားအမည်ဖြင့် ပြန်ရှာကြည့်ပါ။</div>
     </div>
   </div>
@@ -361,22 +388,48 @@
     let selectedProductForOrder = "";
     let globalTrackingData = []; 
 
+    // Instant Loading Caching System with Visual Spinners
     async function loadProducts() {
       const url = 'https://script.google.com/macros/s/AKfycbz659VRQoUdRfXIEg0denAkFZ-0bYjXIUl5Aoq7YFAXuhZXf4j7lr4Z1apDP8Bqckf_/exec';
+      
+      // ၁။ အရင်ဖွင့်ဖူးလို့ မှတ်ဉာဏ်ထဲမှာ ရှိပြီးသား ဒေတာအဟောင်းကို ချက်ချင်းထုတ်ပြမည်
+      const cachedData = localStorage.getItem('gizmo_shop_cache_data');
+      if (cachedData) {
+        try {
+          const parsedData = JSON.parse(cachedData);
+          globalTrackingData = parsedData.tracking || [];
+          renderProducts(parsedData.products || []);
+        } catch (e) {
+          console.error("Cache processing error:", e);
+        }
+      }
+
+      // ၂။ အနောက်ကွယ်ကနေ Google Sheet ဒေတာအသစ်ကို fetch လုပ်ယူမည်
       try {
         const response = await fetch(url);
         const data = await response.json();
+        
+        // ဒေတာအသစ်ကို နောက်တစ်ကြိမ်အတွက် ထပ်မံ Cache သိမ်းဆည်းမည်
+        localStorage.setItem('gizmo_shop_cache_data', JSON.stringify(data));
+        
+        // မျက်နှာပြင်ပေါ်က ဒေတာများကို အသစ်ဆုံးအဖြစ် ပြောင်းလဲပေးမည်
         globalTrackingData = data.tracking || [];
         renderProducts(data.products || []);
       } catch (error) {
-        console.error("Error loading data:", error);
-        document.getElementById('productGrid').innerHTML = '<div style="text-align:center; padding: 20px; width: 100%; grid-column: 1 / -1; color: var(--text-muted);">Data ချိတ်ဆက်ရာတွင် အခက်အခဲရှိနေပါသည်။ ခဏနေမှ ပြန်ကြိုးစားကြည့်ပါ။</div>';
+        console.error("Background data fetch error:", error);
+        // ပထမဆုံးအကြိမ် လုံးဝလာဖွင့်ခြင်းဖြစ်ပြီး Cache လည်းမရှိ၊ လိုင်းလည်းမရမှသာ စာသားထုတ်ပြမည်
+        if (!cachedData) {
+          document.getElementById('productGrid').innerHTML = '<div style="text-align:center; padding: 20px; width: 100%; grid-column: 1 / -1; color: var(--text-muted);">ဒေတာချိတ်ဆက်မှု အဆင်မပြေဖြစ်နေပါသည်။ ခဏနေမှ ပြန်ကြိုးစားကြည့်ပါ။</div>';
+        }
       }
     }
 
     function renderProducts(products) {
       const grid = document.getElementById('productGrid');
+      
+      // စတင် render မလုပ်ခင် spinner များကို ရှင်းထုတ်မည်
       let cardsHTML = `<div id="no-results" style="display: none;">🔍 ပစ္စည်းရှာမတွေ့ပါ။ အခြားအမည်ဖြင့် ပြန်ရှာကြည့်ပါ။</div>`;
+      
       products.forEach(item => {
         cardsHTML += `
           <div class="product-card visible" data-brand="${escapeHtml(item.brand || '')}" data-title="${escapeHtml(item.title || '')}" data-price="${escapeHtml(item.price || '')}" data-desc="${escapeHtml(item.desc || '')}">
